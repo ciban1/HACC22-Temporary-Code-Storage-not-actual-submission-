@@ -4,6 +4,5 @@ if name == "Alice":
 <<<<<<< HEAD
     print("Explain!")
 =======
-    print("At least I know who I was when I got up this morning, but I think I must have been changed several times"/
-          "since.")
+    print("At least I know who I was when I got up this morning, but I think I must have been changed several times since.")
 >>>>>>> new_text
