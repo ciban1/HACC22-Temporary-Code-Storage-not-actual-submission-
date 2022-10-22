@@ -1,0 +1,5 @@
+column,type,label,description
+Library Name,text,Library Name,
+County,text,County,
+Phone,numeric,Phone,
+Location 1,text,Location 1,
