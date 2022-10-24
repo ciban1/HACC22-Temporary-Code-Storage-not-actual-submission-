@@ -5,18 +5,36 @@ import pandas as pd
 import datetime
 import geopandas as gpd
 
-# -------------------------------------------------- Importing Files --------------------------------------------------
-dataset_filename = "c65b9ca4-1124-423e-88bf-e81ab4afc8a1"  # file of data wanted
-url = 'https://opendata.hawaii.gov/api/3/action/datastore_search_sql?sql=SELECT%20*%20from%20%22158d4b5b-0b84-4f27' \
-     '-948e-6eb7a16131f4%22'  # SQL Query dataset
-fileobj_one = urllib.request.urlopen(url)  # grab from url
-response_dict = json.loads(fileobj_one.read())  # load json
 
-results_dict = response_dict["result"]  # the results of the query
-dataset = response_dict["result"]['records']  # the entire data set
-fields_list = results_dict["fields"]  # fields list is a dictionary of headers and their types
-column_headers_list = [column_header["id"] for column_header in fields_list]  # create a list of column headers
-entire_df = pd.DataFrame(dataset)  # take the data and make frame
+# --------------------------------------------------- Files Functions --------------------------------------------------
+def import_data_values(url: str, columns_to_pull):
+   dataset_filename = "c65b9ca4-1124-423e-88bf-e81ab4afc8a1"  # file of data wanted
+   fileobj_one = urllib.request.urlopen(url)  # grab from url
+   response_dict = json.loads(fileobj_one.read())  # load json
+
+   results_dict = response_dict["result"]  # the results of the query
+   dataset = response_dict["result"]['records']  # the entire data set
+   fields_list = results_dict["fields"]  # fields list is a dictionary of headers and their types
+   column_headers_list = [column_header["id"] for column_header in fields_list]  # create a list of column headers
+   dataset_columns = pd.DataFrame(dataset)  # take the data and make frame
+
+   python_df = {}
+   for column in columns_to_pull:
+       python_df.update({column: dataset_columns[column]})
+   graph_df = pd.DataFrame(python_df)  # create a dataframe of the columns in the graph
+   graph_df = graph_df.dropna()  # clean the dataframe
+
+   for column in graph_df:
+       try:
+           graph_df[column] = pd.to_numeric(graph_df[column], errors="raise")
+       except:
+           pass
+
+   columns_generated = {}
+   for column in graph_df:
+       columns_generated.update({column: graph_df[column].tolist()})
+
+   return columns_generated
 
 
 # save all created figures as "[graph type][graph id][time stamp].[file_type]"
@@ -26,7 +44,7 @@ def save_all_figures(file_type: str):
        figure["figure"].savefig(figure["type"] + str(figure["id"]) + "_" + time + "." + file_type)
 
 
-# -------------------------------------------- Displaying graphs functions --------------------------------------------
+# --------------------------------------------- Displaying graphs functions --------------------------------------------
 # figures for five graphs
 fig1, ax1 = plt.subplots()
 fig2, ax2 = plt.subplots()
@@ -37,20 +55,23 @@ logged_figures = []
 available_axes = [ax1, ax2, ax3, ax4, ax5]
 
 
-def generate_bar_graph(x_values, y_values, color: str | None = None, title: str | None = None, x_axis_label: str | None = None, y_axis_label: str | None = None, horizontal: bool = False):
+def generate_bar_graph(x_values, y_values, color: str | None = None, title: str | None = None,
+                      x_axis_label: str | None = None, y_axis_label: str | None = None, horizontal: bool = False):
    current_axis = available_axes.pop(0)
 
    if horizontal:
        current_axis.barh(x_values, y_values, color=color)
        current_axis.set(xlabel=y_axis_label, ylabel=x_axis_label, title=title)
-       logged_figures.append({"figure": current_axis.get_figure(), "type": "horizontalbargraph", "id": len(logged_figures) + 1})
+       logged_figures.append(
+           {"figure": current_axis.get_figure(), "type": "horizontalbargraph", "id": len(logged_figures) + 1})
    else:
        current_axis.bar(x_values, y_values, color=color)
        current_axis.set(xlabel=x_axis_label, ylabel=y_axis_label, title=title)
        logged_figures.append({"figure": current_axis.get_figure(), "type": "bargraph", "id": len(logged_figures) + 1})
 
 
-def generate_line_graph(x_values, y_values, color: str | None = None, title: str | None = None, x_axis_label: str | None = None, y_axis_label: str | None = None):
+def generate_line_graph(x_values, y_values, color: str | None = None, title: str | None = None,
+                       x_axis_label: str | None = None, y_axis_label: str | None = None):
    sorted_x_values = x_values
    sorted_y_values = y_values
 
@@ -67,7 +88,8 @@ def generate_line_graph(x_values, y_values, color: str | None = None, title: str
    logged_figures.append({"figure": current_axis.get_figure(), "type": "linegraph", "id": len(logged_figures) + 1})
 
 
-def generate_scatter_plot(x_values, y_values, color: str | None = None, title: str | None = None, x_axis_label: str | None = None, y_axis_label: str | None = None):
+def generate_scatter_plot(x_values, y_values, color: str | None = None, title: str | None = None,
+                         x_axis_label: str | None = None, y_axis_label: str | None = None):
    current_axis = available_axes.pop(0)
 
    current_axis.scatter(x_values, y_values, color=color)
@@ -82,7 +104,8 @@ def generate_pie_chart(data_values, categories=None, colors=None, title: str | N
    logged_figures.append({"figure": current_axis.get_figure(), "type": "piechart", "id": len(logged_figures) + 1})
 
 
-def generate_geograph(longitude_values, latitude_values, color: str | None = None, title: str | None = None, x_axis_label: str | None = None, y_axis_label: str | None = None):
+def generate_geograph(longitude_values, latitude_values, color: str | None = None, title: str | None = None,
+                     x_axis_label: str | None = None, y_axis_label: str | None = None):
    current_axis = available_axes.pop(0)
    world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
    world.plot(ax=current_axis)
@@ -98,25 +121,8 @@ def generate_geograph(longitude_values, latitude_values, color: str | None = Non
    logged_figures.append({"figure": current_axis.get_figure(), "type": "geograph", "id": len(logged_figures) + 1})
 
 
-def create_graph(graph_type: str, x, y, color: str | None = None, title: str | None = None, x_axis_label: str | None = None, y_axis_label: str | None = None, horizontal_bar: bool = False, pie_categories=None, pie_colors=None):
-   if isinstance(y, list):
-       graph_df = pd.DataFrame({x: entire_df[x]})  # create a dataframe of a column in the graph if y is a list (for pie chart)
-   else:
-       graph_df = pd.DataFrame({x: entire_df[x], y: entire_df[y]})  # create a dataframe of the columns in the graph
-
-   graph_df = graph_df.dropna()  # clean the dataframe
-
-   for dimension in [x, y]:
-       try:
-           graph_df[dimension] = pd.to_numeric(graph_df[dimension], errors="raise")
-       except:
-           pass
-
-   x_values = graph_df[x].tolist()
-
-   y_values = y
-   if isinstance(y, str):
-       y_values = graph_df[y].tolist()
+def create_graph(graph_type: str, x_values, y_values, color: str | None = None, title: str | None = None,
+                x_axis_label: str | None = None, y_axis_label: str | None = None, horizontal_bar: bool = False, pie_colors=None):
 
    if graph_type == "bar":
        generate_bar_graph(
@@ -147,20 +153,12 @@ def create_graph(graph_type: str, x, y, color: str | None = None, title: str | N
            y_axis_label=y_axis_label
        )
    elif graph_type == "pie":
-       if y_values:
-           generate_pie_chart(
-               data_values=x_values,
-               categories=y_values,
-               colors=pie_colors,
-               title=title
-           )
-       else:
-           generate_pie_chart(
-               data_values=x_values,
-               categories=pie_categories,
-               colors=pie_colors,
-               title=title
-           )
+       generate_pie_chart(
+           data_values=y_values,
+           categories=x_values,
+           colors=pie_colors,
+           title=title
+       )
    elif graph_type == "geo":
        generate_geograph(
            longitude_values=x_values,
@@ -172,29 +170,11 @@ def create_graph(graph_type: str, x, y, color: str | None = None, title: str | N
        )
 
 
-# ------------------------------------------------- Graphs start here -------------------------------------------------
-
-create_graph(
-   graph_type="geo",
-   x="longitude",
-   y="latitude",
-   color="red",
-   title="Homeless Shelters in Hawaii"
-)
-
-create_graph(
-   graph_type="pie",
-   x="HIC Beds",
-   title="Homeless Shelters in Hawaii",
-   y="Organization"
-)
-
-# -------------------------------------------------- Graphs end here --------------------------------------------------
-
-# save_all_figures("png")
-
 # --------------------------------------- Display graphs (testing purposes only) ---------------------------------------
-for axis in available_axes:
-   plt.close()  # prevent empty graphs from being displayed
 
-plt.show()  # display all created figures
+def display_figures():
+   for axis in available_axes:
+       plt.close()  # prevent empty graphs from being displayed
+
+   plt.show()  # display all created figures
+
