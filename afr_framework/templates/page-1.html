@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Page 1</title>
+ <head>
+   <title>Page 1</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="icon" href="https://glitch.com/favicon.ico" />
 
-    <link rel="stylesheet" href="/style.css" />
+   <link rel="stylesheet" href="/style.css" />
 
-    <script src="/script.js" defer></script>
-  </head>
-  <!--Top lines-->
-  <body>
-    <div id="Top Lines">
-      <img
-        id="Logo"
-        src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
-      />
-      <h1 id="Line1"></h1>
-      <h1 id="Line2"></h1>
-    </div>
-    <div id="maintext">
-      <!--Title Header-->
-      <div id="HODV">
-        <h1>Hawaii Open Data Visualization</h1>
-      </div>
-      <!--Header 2-->
-      <div id="Label">
-        <p>Visualization that is open and easy</p>
-      </div>
-      <!--input and button-->
-      <div id="Inputs">
+   <script src="/script.js" defer></script>
+ </head>
+ <!--Top lines-->
+ <body>
+   <div id="Top Lines">
+     <img
+       id="Logo"
+       src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
+     />
+     <h1 id="Line1"></h1>
+     <h1 id="Line2"></h1>
+   </div>
+   <div id="maintext">
+     <!--Title Header-->
+     <div id="HODV">
+       <h1>Hawaii Open Data Visualization</h1>
+     </div>
+     <!--Header 2-->
+     <div id="Label">
+       <p>Visualization that is open and easy</p>
+     </div>
+     <!--input and button-->
+     <div id="Inputs">
 
-        <form method="POST" enctype="multipart/form-data">
-            <input id="Link" type="text" name="csv_link" placeholder="Insert link here..." />
-            <input id="Button" type="image" src="https://simg.nicepng.com/png/small/363-3630378_google-web-search-icon-search-icon-website.png" />
-            <input type="submit" value="Submit">
-        </form>
+       <form method="POST" enctype="multipart/form-data">
+           <input id="Link" type="text" name="csv_link" placeholder="Insert link here..." />
+         <p id= "Amount"></p>
+             How many graphs do you want to make?
+               <select id="Select" name="howmanyGraph">
+                 <option value="1">1</option>
+                 <option value="2">2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+                 <option value="5">5</option>
+               </select>
+           <input type="submit" value="Submit">
+       </form>
 
 
-      </div>
-    </div>
-    <!--Bottom line-->
-    <footer>
-      <div id="Bottom Line">
-        <h1 id="Line3"></h1>
-      </div>
-    </footer>
-  </body>
+     </div>
+   </div>
+   <!--Bottom line-->
+   <footer>
+     <div id="Bottom Line">
+       <h1 id="Line3"></h1>
+     </div>
+   </footer>
+ </body>
 </html>
