@@ -1,68 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-   <title>Page 3</title>
+   <title>Page 1</title>
 
    <meta charset="utf-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <link rel="icon" href="https://glitch.com/favicon.ico" />
 
-   <link rel="stylesheet" href="/style.css" />
-
-   <script src="/page2.js" defer></script>
+   <link rel="stylesheet" href="/static/style.css" />
+<link rel="/static/script.js" href="https://pyscript.net/latest/pyscript.css" />
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+   <script src="/static/script.js" defer></script>
  </head>
  <!--Top lines-->
  <body>
-   <div id="Top Lines">
-     <img
-       id="Logo"
-       src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
-     />
-     <h1 id="Line1"></h1>
-     <h1 id="Line2"></h1>
-   </div>
-   <!--Mainbody-->
-   <div id="Mainbody">
-     <h1 id="Label">Graph Types</h1>
-     <!--Inputs-->
-     <form method="post">
-     <div>
-       <select id="select_graph" size="1" name="graphNum">
-         <option value="1">Graph #1</option>
-         <option value="2">Graph #2</option>
-         <option value="3">Graph #3</option>
-         <option value="4">Graph #4</option>
-         <option value="5">Graph #5</option>
-       </select>
-     </div>
-     <div>
-       <select id="graph_type" size="1" name="graphType">
-         <option value="bar">Bar Graph</option>
-         <option value="line">Line Graph</option>
-         <option value="pie">Pie Chart</option>
-         <option value="scatter">Scatter Plot</option>
-       </select>
-     </div>
-     <div>
-       <input id="checkbox_column1" name="checkbox_column1" type="checkbox">
-       <label for="checkbox_column1">Row 1</label><br>
-       <input id="checkbox_column2" name="checkbox_column2" type="checkbox">
-       <label for="checkbox_column2">Row 2</label><br>
-       <input id="checkbox_column3" name="checkbox_column3" type="checkbox">
-       <label for="checkbox_column3">Row 3</label><br>
-       <input id="checkbox_column4" name="checkbox_column4" type="checkbox">
-       <label for="checkbox_column4">Row 4</label><br>
-       <input id="checkbox_column5" name="checkbox_column5" type="checkbox">
-       <label for="checkbox_column5">Row 5</label><br>
-       <input type="submit" value="Submit">
-     </div>
-     </form>
-   </div>
-   <!--Bottom line-->
-   <footer>
-     <div id="Bottom Line">
-       <h1 id="Line3"></h1>
-     </div>
-   </footer>
- </body>
+ <py-script>print('bruh')</py-script>
+    <div id="Top Lines">
+        <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
+        <h1 id="Line1"></h1>
+        <h1 id="Line2"></h1>
+    </div>
+    <!--Mainbody-->
+    <div id="Mainbody">
+        <h1 id="Label">Graph Types</h1>
+        <!--Inputs-->
+        <div id="graph_number">
+            <select id="select_graph" size="1" onchange="graphNumberSelectValidation()">
+                <option name="option0" value="1" selected="selected">Graph #1</option>
+                <option name="option0" value="2">Graph #2</option>
+                <option name="option0" value="3">Graph #3</option>
+                <option name="option0" value="4">Graph #4</option>
+                <option name="option0" value="5">Graph #5</option>
+            </select>
+        </div>
+        <div id="graphs">
+          <label>Select Columns</label>
+          <div id="graph_dropdown">
+            <select id="graph_type" size="1" onchange="graphTypeSelect()">
+                <option name="option1" value="1" selected="selected">Bar Graph</option>
+                <option name="option1" value="2">Line Graph</option>
+                <option name="option1" value="3">Pie Chart</option>
+                <option name="option1" value="4">Scatter Plot</option>
+            </select>
+          </div>
+      </div>
+      <div>
+            <form id="form_checkbox"></form>
+        </div>
+      <div id="next_button">
+        <form>
+            <input id="next" type="submit" value="Submit"/>
+        </form>
+      </div>
+    </div>
+    <!--Bottom line-->
+    <footer>
+        <div id="Bottom Line">
+            <h1 id="Line3"></h1>
+        </div>
+    </footer>
+</body>
+
 </html>
+
