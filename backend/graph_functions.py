@@ -14,18 +14,8 @@ def sql_query_link_converter(csv_url):
         after_file_name)]  # Look right before and right after to find the file name in the csv link
     sql_query = 'https://opendata.hawaii.gov/api/3/action/datastore_search_sql?sql=SELECT%20*%20from%20%22' + file_name + '%22%20'  # SQL can query open data hawaii using the file name
     return sql_query
-def combine_dataframes(url_list):
-    df_to_concat = []
-    for url in url_list:
-        url = sql_query_link_converter(url)  # Convert the csv url to a sql query
-        fileobj_one = urllib.request.urlopen(url)  # Grab from url
-        response_dict = json.loads(fileobj_one.read())  # Load json
-        dataset = response_dict["result"]['records']  # The entire data set
-        df = pd.DataFrame(dataset)
-        print(df)
-        df_to_concat.append(df)
-    concatted_df = pd.concat(df_to_concat)
-    print(concatted_df)
+
+
 def column_headers(url):
     # create a list of column headers
     url = sql_query_link_converter(url)  # Convert the csv url to a sql query
@@ -36,7 +26,10 @@ def column_headers(url):
     # Add every column to the column headers list
     column_headers_list = []
     for column_header in fields_list:
-        column_headers_list.append(column_header["id"])
+        if "_" in column_header["id"]:
+            pass
+        else:
+            column_headers_list.append(column_header["id"])
     return column_headers_list
 
 
@@ -56,8 +49,7 @@ def save_all_figures(file_type: str):
         time = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
         sub_directory_location = "graph_imgs/"
         figure["figure"].savefig(sub_directory_location + figure["type"] + str(figure["id"]) + "_" + time + "." + file_type)
-        #"C:/Users/CClub/PycharmProjects/Pandas_Test"
-
+        # "C:/Users/CClub/PycharmProjects/Pandas_Test"
 
 
 # --------------------------------------------- Displaying graphs functions --------------------------------------------
