@@ -34,13 +34,13 @@ async def post_first_form(request: Request, howmanyGraph: str = Form(...), csv_l
 
 @app.get('/bruh', response_class=HTMLResponse)
 def get_bruh(request: Request):
-   return templates.TemplateResponse("page2_results.html", {"request":request})
+   return templates.TemplateResponse("page2-results.html", {"request":request})
 
 @app.post('/bruh', response_class=HTMLResponse)
 def post_bruh(request: Request, graph_column_select = Form(...)):
    print(graph_column_select)
 
-   return templates.TemplateResponse('page2_results.html', {'request': request})
+   return templates.TemplateResponse('page2-results.html', {'request': request})
 
 # page 2 stuff (above is test)
 ''''''''''''''''''''''''''''''''''''''''''''''''
@@ -70,6 +70,3 @@ def get_graph(request: Request):
 
 if __name__ == '__main__':
    uvicorn.run(app)
-
-
-
