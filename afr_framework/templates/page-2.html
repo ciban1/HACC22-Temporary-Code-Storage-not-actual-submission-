@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <title>Page 1</title>
+
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+   <link rel="stylesheet" href="/static/style.css" />
+<link rel="/static/script.js" href="https://pyscript.net/latest/pyscript.css" />
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+   <script src="/static/script.js" defer></script>
+ </head>
+ <!--Top lines-->
+ <body>
+ <py-script>print('bruh')</py-script>
+    <div id="Top Lines">
+        <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
+        <h1 id="Line1"></h1>
+        <h1 id="Line2"></h1>
+    </div>
+    <!--Mainbody-->
+    <div id="Mainbody">
+        <h1 id="Label">Graph Types</h1>
+        <!--Inputs-->
+        <div id="graph_number">
+            <select id="select_graph" size="1" onchange="graphNumberSelectValidation()">
+                <option name="option0" value="1" selected="selected">Graph #1</option>
+                <option name="option0" value="2">Graph #2</option>
+                <option name="option0" value="3">Graph #3</option>
+                <option name="option0" value="4">Graph #4</option>
+                <option name="option0" value="5">Graph #5</option>
+            </select>
+        </div>
+        <div id="graphs">
+          <label>Select Columns</label>
+          <div id="graph_dropdown">
+            <select id="graph_type" size="1" onchange="graphTypeSelect()">
+                <option name="option1" value="1" selected="selected">Bar Graph</option>
+                <option name="option1" value="2">Line Graph</option>
+                <option name="option1" value="3">Pie Chart</option>
+                <option name="option1" value="4">Scatter Plot</option>
+            </select>
+          </div>
+      </div>
+      <div>
+            <form id="form_checkbox"></form>
+        </div>
+      <div id="next_button">
+        <form>
+            <input id="next" type="submit" value="Submit"/>
+        </form>
+      </div>
+    </div>
+    <!--Bottom line-->
+    <footer>
+        <div id="Bottom Line">
+            <h1 id="Line3"></h1>
+        </div>
+    </footer>
+</body>
+
+</html>
+
