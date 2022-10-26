@@ -5,16 +5,37 @@ from fastapi import FastAPI, Request, Form, Depends, UploadFile, File
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sql_data import *
+# from sql_data import *
+from write_messages import *
+
 global csv_link
 # from schemas import AwesomeForm  # uses schema file to bring in format of printing form data
 
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
+'''jinja test'''
+@app.get('/bruh', response_class=HTMLResponse)
+def get_bruh(request: Request):
+
+   return templates.TemplateResponse("student_results.html", {"request":request})
+
+column_list = ["Year", "Zip Code"]
+@app.post('/bruh', response_class=HTMLResponse)
+def post_bruh(request: Request):
+   for header in column_list:
+      header: str = Form(...)
+      header = jsonable_encoder(header)
+      print(header)
+
+   return templates.TemplateResponse('student_results.html', {'request': request})
+
+
+
+#########
 @app.get('/page_1', response_class=HTMLResponse)
 def get_first_form(request: Request):
    return templates.TemplateResponse("page-1.html", {"request": request})  # renders HTML form and returns to user (lets us see the form)
@@ -23,7 +44,8 @@ def get_first_form(request: Request):
 async def post_first_form(request: Request, howmanyGraph: str = Form(...), csv_link: str = Form(...)):
    print('CSV link:', csv_link)
    print(howmanyGraph, 'graphs')
-   dbName(csv_link)
+   columnDisplayPage2(howmanyGraph)
+   # dbName(csv_link)
    return templates.TemplateResponse("page-1.html", {"request": request})  # returns form
 #page 2
 @app.get('/page_2', response_class=HTMLResponse)
@@ -47,9 +69,3 @@ if __name__ == '__main__':
    uvicorn.run(app)
 
 
-@app.get('/bruh', response_class=HTMLResponse)
-def get_bruh(request: Request):
-   return templates.TemplateResponse("student_results.html", {"request":request})
-@app.post('/bruh', response_class=HTMLResponse)
-def post_bruh(request: Request):
-   return templates.TemplateResponse('student_results.html', {'request': request})
