@@ -5,6 +5,13 @@ import pandas as pd
 import datetime
 import geopandas as gpd
 
+# save all created figures as "[graph type][graph id][time stamp].[file_type]"
+def save_all_figures(file_type: str, figure_log):
+   for figure in figurelog:
+       time = datetime.datetime.now().strftime("%y%m%d%H%M%S")
+       sub_directory_location = "graph_imgs/"
+       figure["figure"].savefig(sub_directorylocation + figure["type"] + str(figure["id"]) + "" + time + "." + file_type)
+       # "C:/Users/CClub/PycharmProjects/Pandas_Test"
 
 # --------------------------------------------------- Files Functions --------------------------------------------------
 def sql_query_link_converter(csv_url):

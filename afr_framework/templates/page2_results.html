@@ -22,20 +22,60 @@
         <h1 id="Label">Graph Types</h1>
         <!--Inputs-->
     <form method="POST" name="graph_column_select">
-    {% set count = 1 %}
-    {% for count in range(1, graph_num) %}
+    
+    
     <div>
-      {% for header in columns %}
+      
         <br>
           <input type="checkbox" name="column" >
-            {{ header }}
+            Year
          </input>
        </br>
-      {% set count = count + 1 %}
-      {% endfor %}
+      
+      
+        <br>
+          <input type="checkbox" name="column" >
+            Date
+         </input>
+       </br>
+      
+      
+        <br>
+          <input type="checkbox" name="column" >
+            Time
+         </input>
+       </br>
+      
+      
     </div>
 
-    {% endfor %}
+    
+    <div>
+      
+        <br>
+          <input type="checkbox" name="column" >
+            Year
+         </input>
+       </br>
+      
+      
+        <br>
+          <input type="checkbox" name="column" >
+            Date
+         </input>
+       </br>
+      
+      
+        <br>
+          <input type="checkbox" name="column" >
+            Time
+         </input>
+       </br>
+      
+      
+    </div>
+
+    
     <input type="submit" value="Submit">
     </form>
 
@@ -50,4 +90,3 @@
 </body>
 
 </html>
-
