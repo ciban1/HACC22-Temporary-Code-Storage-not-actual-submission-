@@ -1,4 +1,4 @@
-import uvicorn
+import uvicorn, os
 import re
 from fastapi import FastAPI, Request, Form, Depends, UploadFile, File
 from fastapi.responses import HTMLResponse, FileResponse
@@ -80,6 +80,5 @@ def get_graph(request: Request):
     # graph_display_test()  ### IMAGE NEEDS TO BE CREATED FROM POST OF PREVIOUS, OTHERWISE WILL NOT BE MADE IN TIME FOR HTML REQUEST
     return templates.TemplateResponse("graph-page.html", {"request": request})
 
-
 if __name__ == '__main__':
-    uvicorn.run(app)
+    uvicorn.run(app, port=int(os.environ.get("PORT", 8080)), host="0.0.0.0")
