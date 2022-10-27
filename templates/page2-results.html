@@ -1,67 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-   <title>Page 1</title>
+<head>
+  <title>Page 1</title>
 
-   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-   <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
+  <link rel="stylesheet" href="/static/styles.css" />
 
-   <script src="https://storage.googleapis.com/afrstorage/static/script.js" defer></script>
- </head>
- <!--Top lines-->
- <body>
+  <script src="/static/script.js" defer></script>
+</head>
+<!--Top lines-->
+<body>
 
-    <div id="Top Lines">
-        <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
-        <h1 id="Line1"></h1>
-        <h1 id="Line2"></h1>
-    </div>
-    <!--Mainbody-->
-    <div id="Mainbody">
-        <h1 id="Label">Graph Types</h1>
-        <!--Inputs-->
-    <form method="POST" name="graph_column_select">
-        
-        
-        <div>
-          
-            <br>
-              <input type="checkbox" name="column1" >
-                Year
-             </input>
-           </br>
-          
-          
-            <br>
-              <input type="checkbox" name="column1" >
-                Date
-             </input>
-           </br>
-          
-          
-            <br>
-              <input type="checkbox" name="column1" >
-                Time
-             </input>
-           </br>
-          
-          
-        </div>
+   <div id="Top Lines">
+       <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
+       <h1 id="Line1"></h1>
+       <h1 id="Line2"></h1>
+   </div>
+   <!--Mainbody-->
+   <div id="Mainbody">
+       <h1 id="Label">Graph Types</h1>
+       <!--Inputs-->
+   <form method="POST" name="graph_column_select">
+       
+       
 
-        
-        <input type="submit" value="Submit">
-    </form>
+       <div id="graph1">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year1" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date1" >
+                       Date
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Time1" >
+                       Time
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+
+       
+
+       <div id="graph2">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year2" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date2" >
+                       Date
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Time2" >
+                       Time
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+
+       
+
+       <div id="graph3">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year3" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date3" >
+                       Date
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Time3" >
+                       Time
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+
+       
+
+       <div id="graph4">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year4" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date4" >
+                       Date
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Time4" >
+                       Time
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+
+       
+       <input type="submit" value="Submit">
+   </form>
 
 
-    <!--Bottom line-->
-    <footer>
-        <div id="Bottom Line">
-            <h1 id="Line3"></h1>
-        </div>
-    </div>
-    </footer>
+   <!--Bottom line-->
+   <footer>
+       <div id="Bottom Line">
+           <h1 id="Line3"></h1>
+       </div>
+   </div>
+   </footer>
 </body>
 
 </html>
