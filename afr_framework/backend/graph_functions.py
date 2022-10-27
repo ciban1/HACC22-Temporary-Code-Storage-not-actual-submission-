@@ -5,6 +5,13 @@ import pandas as pd
 import datetime
 import geopandas as gpd
 
+# save all created figures as "[graph type][graph id][time stamp].[file_type]"
+def save_all_figures(file_type: str, figure_log):
+   for figure in figurelog:
+       time = datetime.datetime.now().strftime("%y%m%d%H%M%S")
+       sub_directory_location = "graph_imgs/"
+       figure["figure"].savefig(sub_directorylocation + figure["type"] + str(figure["id"]) + "" + time + "." + file_type)
+       # "C:/Users/CClub/PycharmProjects/Pandas_Test"
 
 # --------------------------------------------------- Files Functions --------------------------------------------------
 def sql_query_link_converter(csv_url):
@@ -30,8 +37,8 @@ def column_headers(url):
             pass
         else:
             column_headers_list.append(column_header["id"])
+    print(column_headers_list)
     return column_headers_list
-
 
 def grab_data_from_url(url):
     url = sql_query_link_converter(url)
@@ -47,9 +54,7 @@ def grab_data_from_url(url):
 def save_all_figures(file_type: str):
     for figure in logged_figures:
         time = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-        sub_directory_location = "graph_imgs/"
-        figure["figure"].savefig(sub_directory_location + figure["type"] + str(figure["id"]) + "_" + time + "." + file_type)
-        # "C:/Users/CClub/PycharmProjects/Pandas_Test"
+        figure["figure"].savefig(figure["type"] + str(figure["id"]) + "_" + time + "." + file_type)
 
 
 # --------------------------------------------- Displaying graphs functions --------------------------------------------
@@ -66,8 +71,7 @@ def create_subplots():
     available_axes = [ax1, ax2, ax3, ax4, ax5]
 
 
-def generate_bar_graph(x_values, y_values, color: str
-                                                  | None = None, title: str | None = None,
+def generate_bar_graph(x_values, y_values, color: str | None = None, title: str | None = None,
                        x_axis_label: str | None = None, y_axis_label: str | None = None, horizontal: bool = False):
     current_axis = available_axes.pop(0)
     if horizontal:
@@ -221,3 +225,20 @@ def display_figures():
         plt.close()  # prevent empty graphs from being displayed
 
     plt.show()  # display all created figures
+
+'''
+import os
+import matplotlib.pyplot as plt
+
+def graph_display_test():
+    script_dir = os.path.dirname(__file__)
+    results_dir = os.path.join(script_dir, 'Graphs/')
+    sample_file_name = "sample"
+
+    if not os.path.isdir(results_dir):
+        os.makedirs(results_dir)
+
+    plt.plot([1,2,3,4])
+    plt.ylabel('some numbers')
+    plt.savefig(results_dir + sample_file_name)
+'''
