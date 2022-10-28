@@ -5,9 +5,6 @@ from jinja2 import Environment, Template, FileSystemLoader
 from fastapi import *
 from backend.graph_functions import *
 
-test_name = "Python Challenge"
-#columns = ["Year", "Date", "Time"]
-
 
 def columnDisplayPage2(graph_num, columns):
     graph_num = int(graph_num) + 1
