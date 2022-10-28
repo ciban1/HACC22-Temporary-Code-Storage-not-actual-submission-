@@ -1,3 +1,4 @@
+from glob import glob
 import matplotlib.pyplot as plt
 import json
 import urllib.request
@@ -39,6 +40,10 @@ def column_headers(url):
             column_headers_list.append(column_header["id"])
     print(column_headers_list)
     return column_headers_list
+
+    
+
+
 
 def grab_data_from_url(url):
     url = sql_query_link_converter(url)

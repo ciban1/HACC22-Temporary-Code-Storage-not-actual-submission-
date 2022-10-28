@@ -1,13 +1,15 @@
 # write_messages.py
 
+import graphlib
 from jinja2 import Environment, Template, FileSystemLoader
 from fastapi import *
+from backend.graph_functions import *
 
 test_name = "Python Challenge"
-columns = ["Year", "Date", "Time"]
+#columns = ["Year", "Date", "Time"]
 
 
-def columnDisplayPage2(graph_num):
+def columnDisplayPage2(graph_num, columns):
     graph_num = int(graph_num) + 1
     environment = Environment(loader=FileSystemLoader("templates/"))
     print(graph_num)
