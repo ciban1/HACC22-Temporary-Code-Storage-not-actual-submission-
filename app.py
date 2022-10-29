@@ -1,4 +1,5 @@
 from turtle import right
+from urllib.request import HTTPPasswordMgrWithDefaultRealm
 import uvicorn
 import re
 from fastapi import FastAPI, Request, Form, Depends, UploadFile, File, Response 
@@ -31,26 +32,31 @@ async def get_first_form(request: Request):
 
 # html needs to allow scroll
 @app.post('/', response_class=HTMLResponse)
-async def post_first_form(request: Request, howmanyGraph: str = Form(...), csv_link: str = Form(...)):
+async def post_first_form(request: Request, graphtotal: str = Form(...), csv_link: str = Form(...)):
    print('CSV link:', csv_link)
-   print(howmanyGraph, 'graphs')
+   graphtotal
+   print(graphtotal, 'graphs')
    column_list = str(column_headers(csv_link)).replace("&", "and")
    print(type(column_list))
    #put graph num and list in query param 
    urlb = app.url_path_for("get_second_form")
-   url = f'{urlb}/?graphtotal={howmanyGraph}&headers={column_list}'#find number of column in column list, index the list using a
+   url = f'{urlb}/?graphtotal={graphtotal}&headers={column_list}'#find number of column in column list, index the list using a
    return RedirectResponse(url)
 
 ##### page 2
 @app.get('/page_2', response_class=HTMLResponse)
 async def get_second_form(request: Request, graphtotal: Union[str, None] = None, headers: list[str, None] = None):
    print(graphtotal, headers)
-
+   right_list = ast.literal_eval(headers)
+   columnDisplayPage2(graphtotal, right_list)
    return templates.TemplateResponse("page2-results.html", {"request": request})
 
 
 @app.post('/page_2', response_class=HTMLResponse)
 def post_second_form(request: Request, column: list = Form(...), graph_type: list = Form(...), graphtotal: Union[str, None] = None, headers: Union[str, None] = None):  # array of selected columns; use position
+   # urlb = app.url_path_for("get_second_form")
+   # url = f'{urlb}/?graphtotal={graphtotal}&headers={headers}headers1={headers1}&headers2={headers2}&headers3={headers3}&headers4={headers4}&headers5={headers5}'#find number of column in column list, index the list using a
+   
    print(graphtotal)
    print(headers)
    right_list = ast.literal_eval(headers)
@@ -88,13 +94,26 @@ def post_second_form(request: Request, column: list = Form(...), graph_type: lis
    print(headers3)
    print(headers4)
    print(headers5)
+   return templates.TemplateResponse("page2-results.html", {"request": request})
+   # store each list of headers1-5 in url
+   
+   return RedirectResponse(url)
+   
 
-   # # count = 1
-   # for i in range(1, (int(graphtotal) + 1)):
-   #    graph_dict = dict(graph_num = str(i), sel_column = column.find(str(i)))
+# ### page 3
+@app.get('/page_3', response_class=HTMLResponse)
+async def get_third_form(request: Request, graphtotal: Union[str, None] = None, headers1: list[str, None] = None, headers2: list[str, None] = None):
+   print(graphtotal, headers1)
 
-   return templates.TemplateResponse('page2-results.html', {'request': request})
+   # return templates.TemplateResponse("page2-results.html", {"request": request})
+   
+# @app.post('/page_3', response_class=HTMLResponse)
+# def post_third_form(request: Request):
 
+
+
+
+### page 5
 
 @app.get('/page_5', response_class=HTMLResponse)
 def get_graph(request: Request):
