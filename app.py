@@ -40,12 +40,6 @@ async def post_first_form(request: Request, graphtotal: int = Form(...), csv_lin
    # column_list = (column_headers(csv_link))
    column_list = str(column_headers(csv_link)).replace("&", "and")
    print(column_list)
-   
-
-   #put graph num and list in query param 
-   # urlb = app.url_path_for("get_second_form")
-   # url = f'{urlb}/?graphtotal={graphtotal}&headers={headers}'#find number of column in column list, index the list using a
-   # return RedirectResponse(url)
    return fastapi.responses.RedirectResponse(f'/page_2/?graphtotal={graphtotal}&headers={column_list}', status_code=status.HTTP_302_FOUND)
 
 ##### page 2
@@ -87,24 +81,35 @@ def post_second_form(request: Request, column: list = Form(...), graph_type: lis
                if i not in headers5:
                   headers5.append(i)
       count = count + 1
-   print(headers1)
+   print("h1", headers1)
    print(headers2)
    print(headers3)
    print(headers4)
    print(headers5)
-   return fastapi.responses.RedirectResponse(f'/page_3', status_code=status.HTTP_302_FOUND)
+   # return fastapi.responses.RedirectResponse(f'/page_3', status_code=status.HTTP_302_FOUND)
+   return fastapi.responses.RedirectResponse(f'/page_3/?graphtotal={graphtotal}&graph_type={graph_type}&h1={headers1}&h2={headers2}&h3={headers3}&h4={headers4}&h={headers5}', status_code=status.HTTP_302_FOUND)
 
 # ### page 3
 @app.get('/page_3', response_class=HTMLResponse)
-async def get_third_form(request: Request, graphtotal: Union[str, None] = None, headers1: list[str, None] = None, headers2: list[str, None] = None):
-   graphtotal = 3
-   headers1 = ['County1', 'Date1']
-   headers2 = ['Urban Land Percentage2', 'Date2']
-   headers3 = ['Urban Land Percentage3', 'Date3']
-   headers4 = ['Urban Land Percentage4', 'Date4']
-   headers5 = []
-   graph_count = [1, 2, 3, 4]
-   columnDisplayPage3(graphtotal, headers1, headers2, headers3, headers4, headers5)
+async def get_third_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, h1: Union[str, None] = None, h2: Union[str, None] = None, h3: Union[str, None] = None, h4: Union[str, None] = None, h5: Union[str, None] = None):
+   print(type(h1))
+   graph_type = ast.literal_eval(graph_type)
+   headers1 = ast.literal_eval(h1.replace("1", ""))
+   headers2 = ast.literal_eval(h2.replace("2", ""))
+   headers3 = ast.literal_eval(h1.replace("3", ""))
+   headers4 = ast.literal_eval(h1.replace("4", ""))
+   headers5 = ast.literal_eval(h1.replace("5", ""))
+   
+   # graphtotal = 4
+   # # headers1 = ['County1', 'Date1']
+   # headers2 = ['Urban Land Percentage2', 'Date2']
+   # headers3 = ['Urban Land Percentage3', 'Date3']
+   # headers4 = ['Urban Land Percentage4', 'Date4']
+   # # headers5 = []
+   # graph_type =['Bar Graph', 'Bar Graph', 'Bar Graph']
+
+
+   columnDisplayPage3(graphtotal, graph_type, headers1, headers2, headers3, headers4, headers5)
    return templates.TemplateResponse("page3-results.html", {"request": request})
 
 

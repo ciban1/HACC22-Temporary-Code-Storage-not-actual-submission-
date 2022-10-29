@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Page 2</title>
+  <title>Page 3</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,15 +16,17 @@
     <div id="Mainbody">
         <h1 id="Label">Customize Graph</h1>
         <!--Inputs-->
+
+<!-- can change ONLY ids of below, class; If you are rearranging into tables, let me know -->
     <form method="POST" name="axis_select">
         {% if 1 <= graphtotal %}
             <div id="graph1">
                 <!-- can change to -->
-                <p id="graph{{graph}}">Graph 1</p> 
+                <p id="graph1">Graph 1</p> 
+                <p>{{graph_type[0]}}</p>
                 {% for header in headers1 %}
                     <br>
-                        <input type="radio" name="column" value="{{header}}{{count}}" >
-                        {{ header }}
+                        <p>{{ header }}</p>
                         </input>
                     </br>
                 {% endfor %}
@@ -34,12 +36,11 @@
         {% if 2 <= graphtotal %}
             <div>
                 <!-- can change to -->
-                <p id="graph2">Graph 2</p> 
+                <p id="graph2">Graph 2</p>
+                <p>{{graph_type[1]}}</p>
                 {% for header in headers2 %}
                     <br>
-                        <input type="radio" name="column" value="{{header}}{{count}}" >
-                        {{ header }}
-                        </input>
+                        <p>{{ header }}</p>
                     </br>
                 {% endfor %}
             </div>
@@ -48,12 +49,11 @@
         {% if 3 <= graphtotal %}
             <div id="graph{{count}}">
                 <!-- can change to -->
-                <p id="graph{{graph}}">Graph 3</p> 
+                <p id="graph3">Graph 3</p>
+                <p>{{graph_type[2]}}</p> 
                 {% for header in headers3 %}
                     <br>
-                        <input type="radio" name="column" value="{{header}}{{count}}" >
-                        {{ header }}
-                        </input>
+                        <p>{{ header }}</p>
                     </br>
                 {% endfor %}
             </div>
@@ -62,31 +62,30 @@
         {% if 4 <= graphtotal %}
             <div id="graph{{count}}">
                 <!-- can change to -->
-                <p id="graph{{graph}}">Graph 4</p> 
+                <p id="graph4">Graph 4</p>
+                <p>{{graph_type[3]}}</p>
                 {% for header in headers4 %}
                     <br>
-                        <input type="radio" name="column" value="{{header}}{{count}}" >
-                        {{ header }}
-                        </input>
+                        <p>{{ header }}</p>
                     </br>
                 {% endfor %}
             </div>
         {% endif %}
 
         {% if 5 <= graphtotal %}
-            <div id="graph{{count}}">
+            <div id="graph5">
                 <!-- can change to -->
                 <p id="graph{{graph}}">Graph 5</p> 
                 {% for header in headers5 %}
+                <p>{{graph_type[4]}}</p>
                     <br>
-                        <input type="radio" name="column" value="{{header}}{{count}}" >
-                        {{ header }}
-                        </input>
+                        <p>{{ header }}</p>
                     </br>
                 {% endfor %}
             </div>
         {% endif %}
-    
+<!-- can change ONLY ids of above, class; If you are rearranging into tables, let me know -->
+
 
 
         <input type="submit" value="Submit">
