@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sql_data import *
 from write_html2 import *
+from write_html3 import *
 from backend.graph_functions import *
 from starlette.applications import Starlette
 from starlette.responses import PlainTextResponse
@@ -59,15 +60,53 @@ async def get_second_form(request: Request, graphtotal: Union[int, None] = None,
 
 @app.post('/page_2', response_class=HTMLResponse)
 def post_second_form(request: Request, column: list = Form(...), graph_type: list = Form(...), graphtotal: Union[str, None] = None, headers: Union[str, None] = None):  # array of selected columns; use position
+   print(column)
+   print(graph_type)
+   headers1 = []
+   headers2 = []
+   headers3 = []
+   headers4 = []
+   headers5 = []
+   count = 1
+   while count < (int(graphtotal) + 1):
+      for i in column:
+         for char in i:
+            if char == "1":
+               if i not in headers1:
+                  headers1.append(i)
+            elif char == "2":
+               if i not in headers2:
+                  headers2.append(i)
+            elif char == "3":
+               if i not in headers3:
+                  headers3.append(i)
+            elif char == "4":
+               if i not in headers4:
+                  headers4.append(i)
+            elif char == "5":
+               if i not in headers5:
+                  headers5.append(i)
+      count = count + 1
+   print(headers1)
+   print(headers2)
+   print(headers3)
+   print(headers4)
+   print(headers5)
    return fastapi.responses.RedirectResponse(f'/page_3', status_code=status.HTTP_302_FOUND)
-#    # urlb = app.url_path_for("get_second_form")
-#    # url = f'{urlb}/?graphtotal={graphtotal}&headers={headers}headers1={headers1}&headers2={headers2}&headers3={headers3}&headers4={headers4}&headers5={headers5}'#find number of column in column list, index the list using a
-   
 
 # ### page 3
 @app.get('/page_3', response_class=HTMLResponse)
 async def get_third_form(request: Request, graphtotal: Union[str, None] = None, headers1: list[str, None] = None, headers2: list[str, None] = None):
-   return "hi"
+   graphtotal = 3
+   headers1 = ['County1', 'Date1']
+   headers2 = ['Urban Land Percentage2', 'Date2']
+   headers3 = ['Urban Land Percentage3', 'Date3']
+   headers4 = ['Urban Land Percentage4', 'Date4']
+   headers5 = []
+   graph_count = [1, 2, 3, 4]
+   columnDisplayPage3(graphtotal, headers1, headers2, headers3, headers4, headers5)
+   return templates.TemplateResponse("page3-results.html", {"request": request})
+
 
    # return templates.TemplateResponse("page2-results.html", {"request": request})
    

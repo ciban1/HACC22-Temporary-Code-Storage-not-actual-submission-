@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Page 2</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="/static/styles.css" />
+
+  <script src="/static/script.js" defer></script>
+</head>
+<!--Top lines-->
+<body>
+
+    <div id="Mainbody">
+        <h1 id="Label">Customize Graph</h1>
+        <!--Inputs-->
+    <form method="POST" name="axis_select">
+        {% if 1 <= graphtotal %}
+            <div id="graph1">
+                <!-- can change to -->
+                <p id="graph{{graph}}">Graph 1</p> 
+                {% for header in headers1 %}
+                    <br>
+                        <input type="radio" name="column" value="{{header}}{{count}}" >
+                        {{ header }}
+                        </input>
+                    </br>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if 2 <= graphtotal %}
+            <div>
+                <!-- can change to -->
+                <p id="graph2">Graph 2</p> 
+                {% for header in headers2 %}
+                    <br>
+                        <input type="radio" name="column" value="{{header}}{{count}}" >
+                        {{ header }}
+                        </input>
+                    </br>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% if 3 <= graphtotal %}
+            <div id="graph{{count}}">
+                <!-- can change to -->
+                <p id="graph{{graph}}">Graph 3</p> 
+                {% for header in headers3 %}
+                    <br>
+                        <input type="radio" name="column" value="{{header}}{{count}}" >
+                        {{ header }}
+                        </input>
+                    </br>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if 4 <= graphtotal %}
+            <div id="graph{{count}}">
+                <!-- can change to -->
+                <p id="graph{{graph}}">Graph 4</p> 
+                {% for header in headers4 %}
+                    <br>
+                        <input type="radio" name="column" value="{{header}}{{count}}" >
+                        {{ header }}
+                        </input>
+                    </br>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if 5 <= graphtotal %}
+            <div id="graph{{count}}">
+                <!-- can change to -->
+                <p id="graph{{graph}}">Graph 5</p> 
+                {% for header in headers5 %}
+                    <br>
+                        <input type="radio" name="column" value="{{header}}{{count}}" >
+                        {{ header }}
+                        </input>
+                    </br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    
+
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+
+</html>

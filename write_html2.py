@@ -1,5 +1,3 @@
-# write_messages.py
-
 import graphlib
 from jinja2 import Environment, Template, FileSystemLoader
 from fastapi import *
