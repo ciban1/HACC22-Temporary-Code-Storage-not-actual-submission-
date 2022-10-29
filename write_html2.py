@@ -7,7 +7,7 @@ from backend.graph_functions import *
 
 
 def columnDisplayPage2(graph_num, columns):
-    graph_num = int(graph_num) + 1
+    graph_num = graph_num + 1
     environment = Environment(loader=FileSystemLoader("templates/"))
     print(graph_num)
 
