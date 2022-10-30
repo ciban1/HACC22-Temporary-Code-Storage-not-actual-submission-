@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page 4</title>
+ 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+ 
+    <link rel="stylesheet" href="/static/styles.css" />
+ 
+    <script src="/static/script.js" defer></script>
+  </head>
+  <body>
+    <!--Top lines-->
+    <div id="Top Lines">
+      <h1 id="Line1"></h1>
+      <h1 id="Line2"></h1>
+      <img
+        id="Logo"
+        src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
+      />
+    </div>
+    <!--Label-->
+    <div id="Label">
+      <h1>Customization</h1>
+    </div>
+    <!--Instructions-->
+    <div>
+      <p id="instructions">For each graph, choose a name and then pick the graphs main color.
+        Press reload at the bottom of the page to refresh the page with the updated graph colors.
+        When you're finished, pressed publish at the bottom page
+        to finalize your graphs and be able to share them with others.</p>
+    </div>
+    <form method="POST">
+      <!--Graph 1-->
+      {% if 1 <= graphtotal %}
+      <div id="graph1">
+          <input id="g1name" type="text" name="graph1_name" placeholder="Graph #1 name..." />
+          <div id="g1pic">Graph1</div>
+          <label for="g1color">Graph 1 Color</label>
+          <input type="color" name="graph1_color" id="g1color" />
+      </div>
+      {% endif %}
+      <!-- Graph 2 -->
+      {% if 2 <= graphtotal %}
+      <div id="graph2">
+          <input id="g2name" type="text" name="graph2_name" placeholder="Graph #2 name..." />
+          <div id="g2pic">Graph2</div>
+          <label for="g2color">Graph 2 Color</label>
+          <input type="color" name="graph2_color" id="g2color" />
+      </div>
+      {% endif %}
+      <!--Graph 3-->
+      {% if 3 <= graphtotal %}
+      <div id="graph3">
+          <input id="g3name" type="text" name="graph3_name" placeholder="Graph #3 name..." />
+          <div id="g3pic">Graph3</div>
+          <label for="g3color">Graph 3 Color</label>
+          <input type="color" name="graph3_color" id="g3color" />
+      </div>
+      {% endif %}
+      <!--Graph 4-->
+      {% if 4 <= graphtotal %}
+      <div id="graph4">
+          <input id="g4name" type="text" name="graph4_name" placeholder="Graph #4 name..." />
+          <div id="g4pic">Graph4</div>
+          <label for="g4color">Graph 4 Color</label>
+          <input type="color" name="graph4_color" id="g4color" />
+      </div>
+      {% endif %}
+      <!--Graph 5-->
+      {% if 5 <= graphtotal %}
+      <div id="graph5">
+          <input id="g5name" type="text" name="graph5_name" placeholder="Graph #5 name..." />
+          <div id="g5pic">Graph5</div>
+          <label for="g5color">Graph 5 Color</label>
+          <input type="color" name="graph5_color" id="g5color" />
+      </div>
+      {% endif %}
+      <!--Buttons-->
+          <!-- <input type="button" id="back" name="back" value="Back"/>
+          <input type="button" id="reload" name="reload" value="Reload" /> -->
+          <input type="submit" id="publish" name="publish" value="Submit" />
+    </form>
+    <!--Bottom line-->
+    <footer>
+      <div id="Bottom Line">
+        <h1 id="Line3"></h1>
+      </div>
+    </footer>
+  </body>
+</html>
+ 
+ 

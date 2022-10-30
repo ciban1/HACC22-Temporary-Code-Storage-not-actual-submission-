@@ -9,11 +9,12 @@ from fastapi.templating import Jinja2Templates
 from sql_data import *
 from write_html2 import *
 from write_html3 import *
+from write_html4 import *
 from backend.graph_functions import *
 from starlette.applications import Starlette
 from starlette.responses import PlainTextResponse
 from starlette.routing import Route
-from typing import List, Union
+from typing import List, Union, Optional
 import ast
 import starlette.status as status
 
@@ -108,112 +109,55 @@ async def get_third_form(request: Request, graphtotal: Union[int, None] = None, 
    return templates.TemplateResponse("page3-results.html", {"request": request})
    
 @app.post('/page_3', response_class=HTMLResponse)
-async def post_third_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, hed1x: str = Form(...), hed1y: str = Form(...), hed2x: str = Form(...), hed2y: str = Form(...), hed3x: str = Form(...), hed3y: str = Form(...), hed4x: str = Form(...), hed4y: str = Form(...), hed5x: str = Form(...), hed5y: str = Form(...)):
-
+async def post_third_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, hed1x: Optional[str] = Form(None), hed1y: Optional[str] = Form(None), hed2x: Optional[str] = Form(None), hed2y: Optional[str] = Form(None), hed3x: Optional[str] = Form(None), hed3y: Optional[str] = Form(None), hed4x: Optional[str] = Form(None), hed4y: Optional[str] = Form(None), hed5x: Optional[str] = Form(None), hed5y: Optional[str] = Form(None)):
    graph_type = ast.literal_eval(graph_type)
    if 1 <= graphtotal:
-      graph_one = {"type": graph_type[0], "x_axis_name": hed1x.replace("-x", ""), "y_axis_name": hed1y.replace("-y", ""), "settings": dict}
+      graph_one = dict(type=graph_type[0], x_axis_name=hed1x.replace("-x", ""), y_axis_name=hed1y.replace("-y", ""), settings=dict)
    else:
-      graph_one = {}
+      graph_one = "None"
    if 2 <= graphtotal:
       graph_two = {"type": graph_type[1], "x_axis_name": hed2x.replace("-x", ""), "y_axis_name": hed2y.replace("-y", ""), "settings": dict}
+   else:
+      graph_two = "None"
    if 3 <= graphtotal:
       graph_three = {"type": graph_type[2], "x_axis_name": hed3x.replace("-x", ""), "y_axis_name": hed3y.replace("-y", ""), "settings": dict}
+   else:
+      graph_three = "None"
    if 4 <= graphtotal:
       graph_four = {"type": graph_type[3], "x_axis_name": hed4x.replace("-x", ""), "y_axis_name": hed4y.replace("-y", ""), "settings": dict}
+   else:
+      graph_four = "None"
    if 5 <= graphtotal:
       graph_five = {"type": graph_type[4], "x_axis_name": hed5x.replace("-x", ""), "y_axis_name": hed5y.replace("-y", ""), "settings": dict}
    else:
-      print("NONONON")
-   print("555", graph_five)
-   return fastapi.responses.RedirectResponse(f'/page_4', status_code=status.HTTP_302_FOUND)
+      graph_five = "None"
+   print("555", graph_one)
+   return fastapi.responses.RedirectResponse(f'/page_4/?graphtotal={graphtotal}&graph_type={graph_type}&graph_one={graph_one}&graph_two={graph_two}&graph_three={graph_three}&graph_four={graph_four}&graph_five={graph_five}', status_code=status.HTTP_302_FOUND)
 
 
+### page 4
 
-
-
-# @app.post('/page_3')
-# async def post_third_form(request: Request, hed1x: Union[str, None] = None, hed1y: Union[str, None] = None):
-#    print("hi")
-#    print(hed1x, hed1y)
-#    # graph_type = ast.literal_eval(graph_type)
-# #    # if 1 <= graphtotal:
-# #    #    graph_one = {"type": graph_type[0], "x_axis_name": h1x, "y_axis_name": h1y, "settings": dict}
+@app.get('/page_4', response_class=HTMLResponse)
+async def get_first_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None,):
+   columnDisplayPage4(graphtotal)
+   return templates.TemplateResponse("page4-results.html", {"request": request})  # returns form
    
-# #    # print(graph_one)
-#    return fastapi.responses.RedirectResponse(f'/page_4', status_code=status.HTTP_302_FOUND)
-
-@app.get('/page_4', response_class=HTMLResponse, )
-def get_fourth_form(request: Request):
-   return 'hi'
-
-# '''dont touch'''
-
-# @app.post('/page_2', response_class=HTMLResponse)
-# def post_second_form(request: Request, column: list = Form(...), graph_type: list = Form(...), graphtotal: Union[str, None] = None, headers: Union[str, None] = None):  # array of selected columns; use position
-#    # urlb = app.url_path_for("get_second_form")
-#    # url = f'{urlb}/?graphtotal={graphtotal}&headers={headers}headers1={headers1}&headers2={headers2}&headers3={headers3}&headers4={headers4}&headers5={headers5}'#find number of column in column list, index the list using a
-   
-#    print(graphtotal)
-#    print(headers)
-#    right_list = ast.literal_eval(headers)
-#    columnDisplayPage2(graphtotal, right_list)
-#    print(column)
-#    print(graph_type)
-#    headers1 = []
-#    headers2 = []
-#    headers3 = []
-#    headers4 = []
-#    headers5 = []
-#    count = 1
-#    while count < (int(graphtotal) + 1):
-#       for i in column:
-#          for char in i:
-#             if char == "1":
-#                if i not in headers1:
-#                   headers1.append(i)
-#                   break
-#             elif char == "2":
-#                if i not in headers2:
-#                   headers2.append(i)
-#             elif char == "3":
-#                if i not in headers3:
-#                   headers3.append(i)
-#             elif char == "4":
-#                if i not in headers4:
-#                   headers4.append(i)
-#             elif char == "5":
-#                if i not in headers5:
-#                   headers5.append(i)
-#       count = count + 1
-#    print(headers1)
-#    print(headers2)
-#    print(headers3)
-#    print(headers4)
-#    print(headers5)
-#    return templates.TemplateResponse("page2-results.html", {"request": request})
-#    # store each list of headers1-5 in url
-   
-
-# # ### page 3
-# @app.get('/page_3', response_class=HTMLResponse)
-# async def get_third_form(request: Request, graphtotal: Union[str, None] = None, headers1: list[str, None] = None, headers2: list[str, None] = None):
-#    print(graphtotal, headers1)
-
-#    # return templates.TemplateResponse("page2-results.html", {"request": request})
-   
-# # @app.post('/page_3', response_class=HTMLResponse)
-# # def post_third_form(request: Request):
+@app.post('/page_4', response_class=HTMLResponse)
+def post_third_form(request: Request, graph1_name: str = Form(...), graph1_color: str = Form(...), graph2_name: Optional[str] = Form(None), graph2_color: Optional[str] = Form(None), graph3_name: Optional[str] = Form(None), graph3_color: Optional[str] = Form(None), graph4_name: Optional[str] = Form(None), graph4_color: Optional[str] = Form(None), graph5_name: Optional[str] = Form(None), graph5_color: Optional[str] = Form(None), graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None,):
+   print('graphname1', graph1_name)
+   print('graphcolor1', graph1_color)
+   print('graphname2', graph2_name)
+   print('graphcolor2', graph2_color)
+   print('graphname3', graph3_name)
+   print('graphcolor3', graph3_color)
+   print('graphname4', graph4_name)
+   print('graphcolor4', graph4_color)
+   print('graphname5', graph5_name)
+   print('graphcolor5', graph5_color)
+   return templates.TemplateResponse("page4-results.html", {"request": request})
 
 
 
-
-# ### page 5
-
-# @app.get('/page_5', response_class=HTMLResponse)
-# def get_graph(request: Request):
-#    # graph_display_test()  ### IMAGE NEEDS TO BE CREATED FROM POST OF PREVIOUS, OTHERWISE WILL NOT BE MADE IN TIME FOR HTML REQUEST
-#    return templates.TemplateResponse("graph-page.html", {"request": request})
 
 
 if __name__ == '__main__':

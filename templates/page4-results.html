@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page 4</title>
+ 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+ 
+    <link rel="stylesheet" href="/static/styles.css" />
+ 
+    <script src="/static/script.js" defer></script>
+  </head>
+  <body>
+    <!--Top lines-->
+    <div id="Top Lines">
+      <h1 id="Line1"></h1>
+      <h1 id="Line2"></h1>
+      <img
+        id="Logo"
+        src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
+      />
+    </div>
+    <!--Label-->
+    <div id="Label">
+      <h1>Customization</h1>
+    </div>
+    <!--Instructions-->
+    <div>
+      <p id="instructions">For each graph, choose a name and then pick the graphs main color.
+        Press reload at the bottom of the page to refresh the page with the updated graph colors.
+        When you're finished, pressed publish at the bottom page
+        to finalize your graphs and be able to share them with others.</p>
+    </div>
+    <form method="POST">
+      <!--Graph 1-->
+      
+      <div id="graph1">
+          <input id="g1name" type="text" name="graph1_name" placeholder="Graph #1 name..." />
+          <div id="g1pic">Graph1</div>
+          <label for="g1color">Graph 1 Color</label>
+          <input type="color" name="graph1_color" id="g1color" />
+      </div>
+      
+      <!-- Graph 2 -->
+      
+      <div id="graph2">
+          <input id="g2name" type="text" name="graph2_name" placeholder="Graph #2 name..." />
+          <div id="g2pic">Graph2</div>
+          <label for="g2color">Graph 2 Color</label>
+          <input type="color" name="graph2_color" id="g2color" />
+      </div>
+      
+      <!--Graph 3-->
+      
+      <!--Graph 4-->
+      
+      <!--Graph 5-->
+      
+      <!--Buttons-->
+          <!-- <input type="button" id="back" name="back" value="Back"/>
+          <input type="button" id="reload" name="reload" value="Reload" /> -->
+          <input type="submit" id="publish" name="publish" value="Submit" />
+    </form>
+    <!--Bottom line-->
+    <footer>
+      <div id="Bottom Line">
+        <h1 id="Line3"></h1>
+      </div>
+    </footer>
+  </body>
+</html>
+ 
+ 
