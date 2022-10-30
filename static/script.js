@@ -1,340 +1,155 @@
-const graph = document.getElementById("graph_type");
-const columns = document.forms["form_checkbox"].getElementsByTagName("input");
-var graph1Dic = {
-  bar: 0,
-  line: 0,
-  pie: 0,
-  scatter: 0,
-};
-var graph2Dic = {
-  bar: 0,
-  line: 0,
-  pie: 0,
-  scatter: 0,
-};
-var graph3Dic = {
-  bar: 0,
-  line: 0,
-  pie: 0,
-  scatter: 0,
-};
-var graph4Dic = {
-  bar: 0,
-  line: 0,
-  pie: 0,
-  scatter: 0,
-};
-var graph5Dic = {
-  bar: 0,
-  line: 0,
-  pie: 0,
-  scatter: 0,
-};
-const graphDicArray = [graph1Dic, graph2Dic, graph3Dic, graph4Dic, graph5Dic];
-var count = 0;
+const formInput = document.getElementById("graphColumnSelect");
+const formInputs = formInput.getElementsByTagName("input");
+var formGraphArray = new Array();
+var countArray = new Array()
 
-function printGraphArray() {
-  for (var i of graphDicArray) {
-    console.log(i);
-  }
+
+if (document.body.contains(document.getElementById("graphInfo1_p2"))) {
+    const graph1 = document.getElementById("graphInfo1_p2");
+    const graph1Input = graph1.querySelectorAll("input");
+    var count1 = 0;
+    var formInputArray1 = new Array();
+    for (var i = 0; i < graph1Input.length; i++) { formInputArray1.push(graph1Input[i]) }
+    formGraphArray.push(graph1);
+    countArray.push(count1);
 }
-
-function graphNumberSelectValidation() {
-  const graphNumber = document.getElementById("select_graph");
-  const graphOptions = graph.getElementsByTagName("options");
-  var graphSelected = document.querySelectorAll('[selected="selected"]');
-  const graphOptionsId = document.querySelectorAll('[name="option1"]');
-  const graphNumberId = document.querySelectorAll('[name="option0"]');
-
-  console.log(event.currentTarget);
-
-  for (var i = 0; i < graphNumberId.length; i++) {
-    graphNumberId[i].removeAttribute("selected");
-  }
-
-  for (var i = 0; i < graphOptionsId.length; i++) {
-    graphOptionsId[i].removeAttribute("selected");
-  }
-
-  for (var i = 0; i < columns.length; i++) {
-    if (columns[i].checked === true) {
-      columns[i].checked === false;
-    } else console.log("Already Unchecked");
-  }
-
-  for (var i = 0; i < graphNumberId.length; i++) {
-    if (event.currentTarget.value === graphNumberId[i].getAttribute("value")) {
-      graphNumberId[i].setAttribute("selected", "selected");
-      graphSelected = document.querySelectorAll('[selected="selected"]');
-    } else console.log(`Not ${i}`);
-  }
+if (document.body.contains(document.getElementById("graphInfo2_p2"))) {
+    const graph2 = document.getElementById("graphInfo2_p2");
+    const graph2Input = graph2.querySelectorAll("input");
+    var count2 = 0;
+    var formInputArray2 = new Array();
+    for (var i = 0; i < graph2Input.length; i++) { formInputArray2.push(graph2Input[i]) }
+    formGraphArray.push(graph2);
+    countArray.push(count2);
+}
+if (document.body.contains(document.getElementById("graphInfo3_p2"))) {
+    const graph3 = document.getElementById("graphInfo3_p2");
+    const graph3Input = graph3.querySelectorAll("input");
+    var count3 = 0;
+    var formInputArray3 = new Array();
+    for (var i = 0; i < graph3Input.length; i++) { formInputArray3.push(graph3Input[i]) }
+    formGraphArray.push(graph3);
+    countArray.push(count3);
+}
+if (document.body.contains(document.getElementById("graphInfo4_p2"))) {
+    const graph4 = document.getElementById("graphInfo4_p2");
+    const graph4Input = graph4.querySelectorAll("input");
+    var count4 = 0;
+    var formInputArray4 = new Array();
+    for (var i = 0; i < graph4Input.length; i++) { formInputArray4.push(graph4Input[i]) }
+    formGraphArray.push(graph4);
+    countArray.push(count4);
+}
+if (document.body.contains(document.getElementById("graphInfo5_p2"))) {
+    const graph5 = document.getElementById("graphInfo5_p2");
+    const graph5Input = graph5.querySelectorAll("input");
+    var count5 = 0;
+    var formInputArray5 = new Array();
+    for (var i = 0; i < graph5Input.length; i++) { formInputArray5.push(graph5Input[i]) }
+    formGraphArray.push(graph5);
+    countArray.push(count5);
 }
 
 function graphCheckboxValidation() {
-  var graphSelected = document.querySelectorAll('[selected="selected"]');
-  count = 0;
-  for (var i = 0; i < columns.length; i++) {
-    if (columns[i].type === "checkbox" && columns[i].checked === true) {
-      count++;
+    for (var i = 0; i < countArray.length; i++) {
+        countArray[i] = 0;
     }
-  }
-  console.log(count);
-  if (count === 2) {
-    for (var i = 0; i < columns.length; i++) {
-      if (!columns[i].checked === true) {
-        columns[i].disabled = true;
-        console.log(`Disabled Column`);
-      }
-    }
-  }
-  if (count === 1) {
-    for (var i = 0; i < columns.length; i++) {
-      if (columns[i].checked === false) {
-        columns[i].disabled = false;
-        console.log(`Enabled Column`);
-      }
-    }
-  }
-  for (var i = 0; i < columns.length; i++) {
-    if (columns[i].checked === true) {
-      if (graphSelected[0].getAttribute("value") === "1") {
-        graph1Dic[i] = "checked";
-        printGraphArray();
-      }
-    } else {
-      if (columns[i].checked === false) {
-        if (graphSelected[0].getAttribute("value") === "1") {
-          delete graph1Dic[i];
+    for (let i in formInputArray1) {
+        if (formInputArray1[i].checked === true) {
+            countArray[0]++;
         }
-      }
     }
-    if (columns[i].checked === true) {
-      if (graphSelected[0].getAttribute("value") === "2") {
-        graph2Dic[i] = "checked";
-        printGraphArray();
-      }
-    } else {
-      if (columns[i].checked === false) {
-        if (graphSelected[0].getAttribute("value") === "2") {
-          delete graph2Dic[i];
+    for (let i in formInputArray2) {
+        if (formInputArray2[i].checked === true) {
+            countArray[1]++;
         }
-      }
     }
-    if (columns[i].checked === true) {
-      if (graphSelected[0].getAttribute("value") === "3") {
-        graph3Dic[i] = "checked";
-        printGraphArray();
-      }
-    } else {
-      if (columns[i].checked === false) {
-        if (graphSelected[0].getAttribute("value") === "3") {
-          delete graph3Dic[i];
+    for (let i in formInputArray3) {
+        if (formInputArray3[i].checked === true) {
+            countArray[2]++;
         }
-      }
     }
-    if (columns[i].checked === true) {
-      if (graphSelected[0].getAttribute("value") === "4") {
-        graph4Dic[i] = "checked";
-        printGraphArray();
-      }
-    } else {
-      if (columns[i].checked === false) {
-        if (graphSelected[0].getAttribute("value") === "4") {
-          delete graph4Dic[i];
+    for (let i in formInputArray4) {
+        if (formInputArray4[i].checked === true) {
+            countArray[3]++;
         }
-      }
     }
-    if (columns[i].checked === true) {
-      if (graphSelected[0].getAttribute("value") === "5") {
-        graph5Dic[i] = "checked";
-        printGraphArray();
-      }
-    } else {
-      if (columns[i].checked === false) {
-        if (graphSelected[0].getAttribute("value") === "5") {
-          delete graph5Dic[i];
+    for (let i in formInputArray5) {
+        if (formInputArray5[i].checked === true) {
+            countArray[4]++;
         }
-      }
     }
-  }
 
-  // for (var i = 0; i < columns.length; i++) {
-  //     if (columns[i].checked === false) {
-  //         if (graphSelected[0].getAttribute("value") === "1") {
-  //             var key = Object.keys(graph1Dic)
-  //             if (key[i] === columns[i]) {
-  //                 graph1Dic.splice(i)
-  //             }
-  //         }
-  //     }
-  // }
+    if (countArray[0] === 2) {
+        for (var i = 0; i < formInputArray1.length; i++) {
+            if (formInputArray1[i].checked === false) {
+                formInputArray1[i].disabled = true;
+            }
+        }
+    }
+    if (countArray[1] === 2) {
+        for (var i = 0; i < formInputArray2.length; i++) {
+            if (formInputArray2[i].checked === false) {
+                formInputArray2[i].disabled = true;
+            }
+        }
+    }
+    if (countArray[2] === 2) {
+        for (var i = 0; i < formInputArray3.length; i++) {
+            if (formInputArray3[i].checked === false) {
+                formInputArray3[i].disabled = true;
+            }
+        }
+    }
+    if (countArray[3] === 2) {
+        for (var i = 0; i < formInputArray4.length; i++) {
+            if (formInputArray4[i].checked === false) {
+                formInputArray4[i].disabled = true;
+            }
+        }
+    }
+    if (countArray[4] === 2) {
+        for (var i = 0; i < formInputArray5.length; i++) {
+            if (formInputArray5[i].checked === false) {
+                formInputArray5[i].disabled = true;
+            }
+        }
+    }
+
+    if (countArray[0] === 0 || countArray[0] === 1) {
+        for (var i = 0; i < formInputArray1.length; i++) {
+            if (formInputArray1[i].checked === false) {
+                formInputArray1[i].disabled = false;
+            }
+        }
+    }
+    if (countArray[1] === 0 || countArray[1] === 1) {
+        for (var i = 0; i < formInputArray2.length; i++) {
+            if (formInputArray2[i].checked === false) {
+                formInputArray2[i].disabled = false;
+            }
+        }
+    }
+    if (countArray[2] === 0 || countArray[2] === 1) {
+        for (var i = 0; i < formInputArray3.length; i++) {
+            if (formInputArray3[i].checked === false) {
+                formInputArray3[i].disabled = false;
+            }
+        }
+    }
+    if (countArray[3] === 0 || countArray[3] === 1) {
+        for (var i = 0; i < formInputArray4.length; i++) {
+            if (formInputArray4[i].checked === false) {
+                formInputArray4[i].disabled = false;
+            }
+        }
+    }
+    if (countArray[4] === 0 || countArray[4] === 1) {
+        for (var i = 0; i < formInputArray5.length; i++) {
+            if (formInputArray5[i].checked === false) {
+                formInputArray5[i].disabled = false;
+            }
+        }
+    }
+
 }
-
-function graphTypeSelect() {
-  const graphNumber = document.getElementById("select_graph");
-  const graphOptions = graph.getElementsByTagName("options");
-  var graphSelected = document.querySelectorAll('[selected="selected"]');
-  const graphOptionsId = document.querySelectorAll('[name="option1"]');
-
-  for (var i = 0; i < graphOptionsId.length; i++) {
-    graphOptionsId[i].removeAttribute("selected");
-  }
-
-  for (var i = 0; i < graphOptionsId.length; i++) {
-    if (event.currentTarget.value === graphOptionsId[i].getAttribute("value")) {
-      graphOptionsId[i].setAttribute("selected", "selected");
-      graphSelected = document.querySelectorAll('[selected="selected"]');
-    } else console.log(`Error ${i}`);
-  }
-
-  console.log(graphSelected[0].getAttribute("name"));
-  console.log(graphSelected[1].getAttribute("name"));
-
-  console.log(event.currentTarget);
-  if (graphSelected[0].getAttribute("value") === "1") {
-    if (graphSelected[1].getAttribute("value") === "1") {
-      graph1Dic["bar"] = 1;
-      return printGraphArray();
-    } else {
-      graph1Dic["bar"] = 0;
-    }
-    if (graphSelected[1].getAttribute("value") === "2") {
-      graph1Dic["line"] = 1;
-      return printGraphArray();
-    } else {
-      graph1Dic["line"] = 0;
-    }
-    if (graphSelected[1].getAttribute("value") === "3") {
-      graph1Dic["pie"] = 1;
-      return printGraphArray();
-    } else {
-      graph1Dic["pie"] = 0;
-    }
-    if (graphSelected[1].getAttribute("value") === "4") {
-      graph1Dic["scatter"] = 1;
-      return printGraphArray();
-    } else {
-      graph1Dic["scatter"] = 0;
-    }
-  } else {
-    if (graphSelected[0].getAttribute("value") === "2") {
-      if (graphSelected[1].getAttribute("value") === "1") {
-        graph2Dic["bar"] = 1;
-        return printGraphArray();
-      } else {
-        graph2Dic["bar"] = 0;
-      }
-      if (graphSelected[1].getAttribute("value") === "2") {
-        graph2Dic["line"] = 1;
-        return printGraphArray();
-      } else {
-        graph2Dic["line"] = 0;
-      }
-      if (graphSelected[1].getAttribute("value") === "3") {
-        graph2Dic["pie"] = 1;
-        return printGraphArray();
-      } else {
-        graph2Dic["pie"] = 0;
-      }
-      if (graphSelected[1].getAttribute("value") === "4") {
-        graph2Dic["scatter"] = 1;
-        return printGraphArray();
-      } else {
-        graph2Dic["scatter"] = 0;
-      }
-    } else {
-      if (graphSelected[0].getAttribute("value") === "3") {
-        if (graphSelected[1].getAttribute("value") === "1") {
-          graph3Dic["bar"] = 1;
-          return printGraphArray();
-        } else {
-          graph3Dic["bar"] = 0;
-        }
-        if (graphSelected[1].getAttribute("value") === "2") {
-          graph3Dic["line"] = 1;
-          return printGraphArray();
-        } else {
-          graph3Dic["line"] = 0;
-        }
-        if (graphSelected[1].getAttribute("value") === "3") {
-          graph3Dic["pie"] = 1;
-          return printGraphArray();
-        } else {
-          graph3Dic["pie"] = 0;
-        }
-        if (graphSelected[1].getAttribute("value") === "4") {
-          graph3Dic["scatter"] = 1;
-          return printGraphArray();
-        } else {
-          graph3Dic["scatter"] = 0;
-        }
-      } else {
-        if (graphSelected[0].getAttribute("value") === "4") {
-          if (graphSelected[1].getAttribute("value") === "1") {
-            graph4Dic["bar"] = 1;
-            return printGraphArray();
-          } else {
-            graph4Dic["bar"] = 0;
-          }
-          if (graphSelected[1].getAttribute("value") === "2") {
-            graph4Dic["line"] = 1;
-            return printGraphArray();
-          } else {
-            graph4Dic["line"] = 0;
-          }
-          if (graphSelected[1].getAttribute("value") === "3") {
-            graph4Dic["pie"] = 1;
-            return printGraphArray();
-          } else {
-            graph4Dic["pie"] = 0;
-          }
-          if (graphSelected[1].getAttribute("value") === "4") {
-            graph4Dic["scatter"] = 1;
-            return printGraphArray();
-          } else {
-            graph4Dic["scatter"] = 0;
-          }
-        } else {
-          if (graphSelected[0].getAttribute("value") === "5") {
-            if (graphSelected[1].getAttribute("value") === "1") {
-              graph5Dic["bar"] = 1;
-              return printGraphArray();
-            } else {
-              graph5Dic["bar"] = 0;
-            }
-            if (graphSelected[1].getAttribute("value") === "2") {
-              graph5Dic["line"] = 1;
-              return printGraphArray();
-            } else {
-              graph5Dic["line"] = 0;
-            }
-            if (graphSelected[1].getAttribute("value") === "3") {
-              graph5Dic["pie"] = 1;
-              return printGraphArray();
-            } else {
-              graph5Dic["pie"] = 0;
-            }
-            if (graphSelected[1].getAttribute("value") === "4") {
-              graph5Dic["scatter"] = 1;
-              return printGraphArray();
-            } else {
-              graph5Dic["scatter"] = 0;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-const column_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-
-let txt = "";
-for (let x in column_names) {
-  txt +=
-    "<input id=' name=' type='checkbox' onclick='graphCheckboxValidation()'>" +
-    column_names[x] +
-    "<br>";
-}
-
-document.getElementById("form_checkbox").innerHTML = txt;

@@ -27,6 +27,11 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+### how to page
+@app.get("/how_to")
+async def get_how_to(request: Request):
+   return templates.TemplateResponse("how-to.html", {"request": request})
+
 
 # page 1
 @app.get('/', response_class=HTMLResponse)
@@ -114,23 +119,23 @@ async def post_third_form(request: Request, graphtotal: Union[int, None] = None,
    if 1 <= graphtotal:
       graph_one = dict(type=graph_type[0], x_axis_name=hed1x.replace("-x", ""), y_axis_name=hed1y.replace("-y", ""), settings=dict)
    else:
-      graph_one = "None"
+      graph_one = {}
    if 2 <= graphtotal:
       graph_two = {"type": graph_type[1], "x_axis_name": hed2x.replace("-x", ""), "y_axis_name": hed2y.replace("-y", ""), "settings": dict}
    else:
-      graph_two = "None"
+      graph_two = {}
    if 3 <= graphtotal:
       graph_three = {"type": graph_type[2], "x_axis_name": hed3x.replace("-x", ""), "y_axis_name": hed3y.replace("-y", ""), "settings": dict}
    else:
-      graph_three = "None"
+      graph_three = {}
    if 4 <= graphtotal:
       graph_four = {"type": graph_type[3], "x_axis_name": hed4x.replace("-x", ""), "y_axis_name": hed4y.replace("-y", ""), "settings": dict}
    else:
-      graph_four = "None"
+      graph_four = {}
    if 5 <= graphtotal:
       graph_five = {"type": graph_type[4], "x_axis_name": hed5x.replace("-x", ""), "y_axis_name": hed5y.replace("-y", ""), "settings": dict}
    else:
-      graph_five = "None"
+      graph_five = {}
    print("555", graph_one)
    return fastapi.responses.RedirectResponse(f'/page_4/?graphtotal={graphtotal}&graph_type={graph_type}&graph_one={graph_one}&graph_two={graph_two}&graph_three={graph_three}&graph_four={graph_four}&graph_five={graph_five}', status_code=status.HTTP_302_FOUND)
 
@@ -139,6 +144,13 @@ async def post_third_form(request: Request, graphtotal: Union[int, None] = None,
 
 @app.get('/page_4', response_class=HTMLResponse)
 async def get_first_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None,):
+   # backend first generation of graph
+   # create_graph(values_dataframe, axis, graph_id: int, "Bar Graph", "Year", y_axis_name, settings,
+   #               x_axis_label, y_axis_label, title, x_data, y_data, show_legend, x_range, y_range,
+   #               x_axis_label_font_name, y_axis_label_font_name, title_font_name, x_axis_label_font_size,
+   #               y_axis_label_font_size, title_font_size)
+
+
    columnDisplayPage4(graphtotal)
    return templates.TemplateResponse("page4-results.html", {"request": request})  # returns form
    
@@ -156,10 +168,5 @@ def post_third_form(request: Request, graph1_name: str = Form(...), graph1_color
    print('graphcolor5', graph5_color)
    return templates.TemplateResponse("page4-results.html", {"request": request})
 
-
-
-
-
 if __name__ == '__main__':
    uvicorn.run(app)
-

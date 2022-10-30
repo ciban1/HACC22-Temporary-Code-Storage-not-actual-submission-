@@ -6,145 +6,83 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- change to cloud link -->
   <link rel="stylesheet" href="/static/styles.css" />
-  <script src="/static/script.js" defer></script>
-
-     <!-- ADD THIS BACK IN -->
-   <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
-   <script src="https://storage.googleapis.com/afrstorage/static/script.js" defer></script> -->
 
 </head>
-<!--Top lines-->
 <body>
-
-   <div id="Top Lines">
-       <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
-       <h1 id="Line1"></h1>
-       <h1 id="Line2"></h1>
-   </div>
+   <!--Top lines-->
+    <div id="Top Lines">
+      <h1 id="Line1"></h1>
+      <h1 id="Line2"></h1>
+      <img
+        id="Logo"
+        src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
+      />
+    </div>
    <!--Mainbody-->
    <div id="Mainbody">
-       <h1 id="Label">Graph Types</h1>
+    <div id="Label">
+      <h1>Graph Types</h1>
+    </div>
+    <!--Instructions-->
+    <div>
+      <p id="instructions">
+        For each graph, choose the type of graph you want to create. Then, select the 2 columns from the dataset you want the graph to display.
+      </p>
+    </div>
        <!--Inputs-->
-   <form method="POST" name="graph_column_select">
+   <form id="graphColumnSelect" method="POST" name="graph_column_select">
 
     <!-- do not modify names or arrangement below -->
        
        
-       <div id="graph1">
-           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+       <div id="graph1_p2">
+        <div id="bs1_p2">
+        <label for="graphType1_p2">Graph #1</label>
+           <select id="graphType1_p2" class="graph_type" size="1" name="graph_type">
                <option name="option1" value="Bar Graph">Bar Graph</option>
                <option name="option1" value="Line Graph">Line Graph</option>
                <option name="option1" value="Pie Graph">Pie Chart</option>
                <option name="option1" value="Scatter Graph">Scatter Plot</option>
            </select>
+        </div>
+        <div id="graphInfo1_p2">
                  
                    <br>
-                     <input type="checkbox" name="column" value="Month/Year1" >
-                       Month/Year
+                     <input type="checkbox" name="column" value="Date and Time1" onclick="graphCheckboxValidation()">
+                       Date and Time
                      </input>
                    </br>
                  
                  
                    <br>
-                     <input type="checkbox" name="column" value="Notes1" >
-                       Notes
+                     <input type="checkbox" name="column" value="Year1" onclick="graphCheckboxValidation()">
+                       Year
                      </input>
                    </br>
                  
                  
                    <br>
-                     <input type="checkbox" name="column" value="Civilian Labor Force1" >
-                       Civilian Labor Force
+                     <input type="checkbox" name="column" value="People per Capita1" onclick="graphCheckboxValidation()">
+                       People per Capita
                      </input>
                    </br>
                  
                  
-                   <br>
-                     <input type="checkbox" name="column" value="Employed1" >
-                       Employed
-                     </input>
-                   </br>
-                 
-                 
-                   <br>
-                     <input type="checkbox" name="column" value="Unemployed1" >
-                       Unemployed
-                     </input>
-                   </br>
-                 
-                 
-                   <br>
-                     <input type="checkbox" name="column" value="Unemployment Rate1" >
-                       Unemployment Rate
-                     </input>
-                   </br>
-                 
-                 
-       </div>
-       
-       <div id="graph2">
-           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
-               <option name="option1" value="Bar Graph">Bar Graph</option>
-               <option name="option1" value="Line Graph">Line Graph</option>
-               <option name="option1" value="Pie Graph">Pie Chart</option>
-               <option name="option1" value="Scatter Graph">Scatter Plot</option>
-           </select>
-                 
-                   <br>
-                     <input type="checkbox" name="column" value="Month/Year2" >
-                       Month/Year
-                     </input>
-                   </br>
-                 
-                 
-                   <br>
-                     <input type="checkbox" name="column" value="Notes2" >
-                       Notes
-                     </input>
-                   </br>
-                 
-                 
-                   <br>
-                     <input type="checkbox" name="column" value="Civilian Labor Force2" >
-                       Civilian Labor Force
-                     </input>
-                   </br>
-                 
-                 
-                   <br>
-                     <input type="checkbox" name="column" value="Employed2" >
-                       Employed
-                     </input>
-                   </br>
-                 
-                 
-                   <br>
-                     <input type="checkbox" name="column" value="Unemployed2" >
-                       Unemployed
-                     </input>
-                   </br>
-                 
-                 
-                   <br>
-                     <input type="checkbox" name="column" value="Unemployment Rate2" >
-                       Unemployment Rate
-                     </input>
-                   </br>
-                 
-                 
-       </div>
-       
+        </div>
+        
     <!-- do not modify names or arrangement above -->
 
 
-       <input type="submit" value="Submit">
+    <div id="buttons">
+      <input type="button" id="back" value="Back" onclick="history.back()"/>
+      <input type="submit" id="next" value="Next" />
+    </div>
    </form>
 
 
    <!--Bottom line-->
-   <footer>
+   <footer id="footer">
        <div id="Bottom Line">
            <h1 id="Line3"></h1>
        </div>
@@ -153,3 +91,161 @@
 </body>
 
 </html>
+
+<script>
+  const formInput = document.getElementById("graphColumnSelect");
+  const formInputs = formInput.getElementsByTagName("input");
+  var formGraphArray = new Array();
+  var countArray = new Array()
+
+
+  if (document.body.contains(document.getElementById("graphInfo1_p2"))) {
+      const graph1 = document.getElementById("graphInfo1_p2");
+      const graph1Input = graph1.querySelectorAll("input");
+      var count1 = 0;
+      var formInputArray1 = new Array();
+      for (var i = 0; i < graph1Input.length; i++) { formInputArray1.push(graph1Input[i]) }
+      formGraphArray.push(graph1);
+      countArray.push(count1);
+  }
+  if (document.body.contains(document.getElementById("graphInfo2_p2"))) {
+      const graph2 = document.getElementById("graphInfo2_p2");
+      const graph2Input = graph2.querySelectorAll("input");
+      var count2 = 0;
+      var formInputArray2 = new Array();
+      for (var i = 0; i < graph2Input.length; i++) { formInputArray2.push(graph2Input[i]) }
+      formGraphArray.push(graph2);
+      countArray.push(count2);
+  }
+  if (document.body.contains(document.getElementById("graphInfo3_p2"))) {
+      const graph3 = document.getElementById("graphInfo3_p2");
+      const graph3Input = graph3.querySelectorAll("input");
+      var count3 = 0;
+      var formInputArray3 = new Array();
+      for (var i = 0; i < graph3Input.length; i++) { formInputArray3.push(graph3Input[i]) }
+      formGraphArray.push(graph3);
+      countArray.push(count3);
+  }
+  if (document.body.contains(document.getElementById("graphInfo4_p2"))) {
+      const graph4 = document.getElementById("graphInfo4_p2");
+      const graph4Input = graph4.querySelectorAll("input");
+      var count4 = 0;
+      var formInputArray4 = new Array();
+      for (var i = 0; i < graph4Input.length; i++) { formInputArray4.push(graph4Input[i]) }
+      formGraphArray.push(graph4);
+      countArray.push(count4);
+  }
+  if (document.body.contains(document.getElementById("graphInfo5_p2"))) {
+      const graph5 = document.getElementById("graphInfo5_p2");
+      const graph5Input = graph5.querySelectorAll("input");
+      var count5 = 0;
+      var formInputArray5 = new Array();
+      for (var i = 0; i < graph5Input.length; i++) { formInputArray5.push(graph5Input[i]) }
+      formGraphArray.push(graph5);
+      countArray.push(count5);
+  }
+
+  function graphCheckboxValidation() {
+      for (var i = 0; i < countArray.length; i++) {
+          countArray[i] = 0;
+      }
+      for (let i in formInputArray1) {
+          if (formInputArray1[i].checked === true) {
+              countArray[0]++;
+          }
+      }
+      for (let i in formInputArray2) {
+          if (formInputArray2[i].checked === true) {
+              countArray[1]++;
+          }
+      }
+      for (let i in formInputArray3) {
+          if (formInputArray3[i].checked === true) {
+              countArray[2]++;
+          }
+      }
+      for (let i in formInputArray4) {
+          if (formInputArray4[i].checked === true) {
+              countArray[3]++;
+          }
+      }
+      for (let i in formInputArray5) {
+          if (formInputArray5[i].checked === true) {
+              countArray[4]++;
+          }
+      }
+
+      if (countArray[0] === 2) {
+          for (var i = 0; i < formInputArray1.length; i++) {
+              if (formInputArray1[i].checked === false) {
+                  formInputArray1[i].disabled = true;
+              }
+          }
+      }
+      if (countArray[1] === 2) {
+          for (var i = 0; i < formInputArray2.length; i++) {
+              if (formInputArray2[i].checked === false) {
+                  formInputArray2[i].disabled = true;
+              }
+          }
+      }
+      if (countArray[2] === 2) {
+          for (var i = 0; i < formInputArray3.length; i++) {
+              if (formInputArray3[i].checked === false) {
+                  formInputArray3[i].disabled = true;
+              }
+          }
+      }
+      if (countArray[3] === 2) {
+          for (var i = 0; i < formInputArray4.length; i++) {
+              if (formInputArray4[i].checked === false) {
+                  formInputArray4[i].disabled = true;
+              }
+          }
+      }
+      if (countArray[4] === 2) {
+          for (var i = 0; i < formInputArray5.length; i++) {
+              if (formInputArray5[i].checked === false) {
+                  formInputArray5[i].disabled = true;
+              }
+          }
+      }
+
+      if (countArray[0] === 0 || countArray[0] === 1) {
+          for (var i = 0; i < formInputArray1.length; i++) {
+              if (formInputArray1[i].checked === false) {
+                  formInputArray1[i].disabled = false;
+              }
+          }
+      }
+      if (countArray[1] === 0 || countArray[1] === 1) {
+          for (var i = 0; i < formInputArray2.length; i++) {
+              if (formInputArray2[i].checked === false) {
+                  formInputArray2[i].disabled = false;
+              }
+          }
+      }
+      if (countArray[2] === 0 || countArray[2] === 1) {
+          for (var i = 0; i < formInputArray3.length; i++) {
+              if (formInputArray3[i].checked === false) {
+                  formInputArray3[i].disabled = false;
+              }
+          }
+      }
+      if (countArray[3] === 0 || countArray[3] === 1) {
+          for (var i = 0; i < formInputArray4.length; i++) {
+              if (formInputArray4[i].checked === false) {
+                  formInputArray4[i].disabled = false;
+              }
+          }
+      }
+      if (countArray[4] === 0 || countArray[4] === 1) {
+          for (var i = 0; i < formInputArray5.length; i++) {
+              if (formInputArray5[i].checked === false) {
+                  formInputArray5[i].disabled = false;
+              }
+          }
+      }
+
+  }
+</script>

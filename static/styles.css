@@ -1,55 +1,75 @@
 body {
-  background-color: #e6ebee;
+  background-color: #ffffff;
   margin: 0;
-  overflow-y: scroll;
+  overflow: auto;
+  color: #07305c;
+  font-family: "Montserrat", sans-serif;
 }
 
 #Line1 {
   background-color: #262626;
   margin: 0 auto;
-  height: 35px;
+  height: 40px;
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
 }
 
 #Line2 {
   background-color: #343d46;
-  height: 50px;
+  height: 70px;
   margin: 0 auto;
   width: 100%;
-  position: fixed;
-  top: 35px;
+  position: absolute;
+  margin-top: 40px;
 }
 
 #Line3 {
   background-color: #165cab;
   margin: 0 auto;
-  height: 10px;
+  height: 128px;
+  width: 100%;
+  position: absolute;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#Line3_p1 {
+  background-color: #165cab;
+  margin: 0 auto;
+  height: 128px;
   width: 100%;
   bottom: 0;
-  position: fixed;
+  position: absolute;
 }
 
 #Logo {
-  z-index: 2;
-  height: 65px;
-  width: 65px;
+  height: 75px;
+  width: 75px;
+  padding-top: 26px;
+  margin-left: 4%;
+  position: relative;
+  z-index: 1;
 }
 
 #HODV {
   font-family: "Montserrat", sans-serif;
   text-align: center;
-  font-size: 2.5vmax;
+  font-size: 1.25vmax;
   color: #000000;
-  position: relative;
+  padding-top: 40px;
 }
 
-#Label {
+#HOD {
   font-family: "Montserrat", sans-serif;
   text-align: center;
-  font-size: 2.5vmax;
+  font-size: 1.25vmax;
   color: #000000;
+  padding-bottom: 30px;
 }
 
 #Inputs {
@@ -61,18 +81,85 @@ body {
 
 #Link {
   display: inline-flex;
-  font-size: 1rem;
-  width: 50vw;
-  height: 25px;
+  font-size: 1.25vmax;
+  width: 63vw;
+  height: 20px;
   margin-top: auto;
-  padding: 0;
+  padding-left: 0.5vmax;
   vertical-align: center;
 }
 
 #Button {
-  display: flex;
-  height: 30px;
-  margin-top: auto;
-  vertical-align: center;
+  width: 26px;
+  height: 26px;
+  font-size: 2vw;
 }
 
+#Amount {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-size: 1.5vmax;
+}
+
+#Select {
+  font-size: 1.5vmax;
+}
+
+#instructions {
+  font-size: 1.5vmax;
+  font-family: "Montserrat", sans-serif;
+  padding-left: 10px;
+}
+
+#Label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1vmax;
+  padding-left: 10px;
+}
+
+/* #graph1_p2, #graph2_p2, #graph3_p2, #graph4_p2, #graph5_p2{
+  padding-left: 20px;
+  padding-top: 20px;
+} */
+
+#graph2_p2, #graph3_p2, #graph4_p2, #graph5_p2{
+  padding-top: 20px;
+}
+
+#graphType1_p2, #graphType2_p2, #graphType3_p2, #graphType4_p2, #graphType5_p2{
+  font-size: 1vmax;
+  margin-bottom: 15px; 
+}
+
+#graphInfo1_p2, #graphInfo2_p2, #graphInfo3_p2, #graphInfo4_p2, #graphInfo5_p2 {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  width: 55vmin;
+  max-height: 15vmax;
+  overflow-y: auto;
+  margin: auto;
+  padding: 10px;
+  font-size: 1.25vmax;
+} 
+
+#bs1_p2, #bs2_p2, #bs3_p2, #bs4_p2, #bs5_p2 {
+  text-align: center
+}
+
+label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5vmax;
+}
+
+#next, #back {
+  width: 5vmax;
+  height: 2vmax;
+  font-size: 1vmax;
+}
+
+#buttons {
+  text-align: center;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-top: 20px;
+}

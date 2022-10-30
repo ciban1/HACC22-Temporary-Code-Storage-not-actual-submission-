@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-   <title>Page 1</title>
 
-   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <link rel="icon" href="https://glitch.com/favicon.ico" />
+<head>
+  <title>Page 1</title>
 
-   <!-- change to cloud link -->
-   <link rel="stylesheet" href="/static/styles.css" />
-   <script src="/static/script.js" defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://glitch.com/favicon.ico" />
 
-   <!-- ADD THIS BACK IN -->
-   <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
+  <!--Temp-->
+  <link rel="stylesheet" href="static/styles.css" />
+
+  <!--Add back in-->
+  <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
    <script src="https://storage.googleapis.com/afrstorage/static/script.js" defer></script> -->
+</head>
 
-   
- </head>
- <!--Top lines-->
- <body>
-   <div id="Top Lines">
-     <img
-       id="Logo"
-       src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
-     />
-     <h1 id="Line1"></h1>
-     <h1 id="Line2"></h1>
-   </div>
-   <div id="maintext">
-     <!--Title Header-->
-     <div id="HODV">
-       <h1>Hawaii Open Data Visualization</h1>
-     </div>
-     <!--Header 2-->
-     <div id="Label">
-       <p>Visualization that is open and easy</p>
-     </div>
-     <!--input and button-->
-     <div id="Inputs">
+<body>
+  <!--Top lines-->
+  <div id="Top Lines">
+    <h1 id="Line1"></h1>
+    <h1 id="Line2"></h1>
+    <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
+  </div>
+  <div id="maintext">
+    <!--Title-->
+    <div id="HODV">
+      <h1>Hawaii Open Data Visualizer</h1>
+    </div>
+    <!--input and button-->
+    <div id="Inputs">
 
       <form method="POST" enctype="multipart/form-data">
-           <input id="Link" type="text" name="csv_link" placeholder="Insert link here..." />
-         <p id= "Amount"></p>
-             How many graphs do you want to make?
-               <select id="Select" name="graphtotal">
-                 <option value="1">1</option>
-                 <option value="2">2</option>
-                 <option value="3">3</option>
-                 <option value="4">4</option>
-                 <option value="5">5</option>
-               </select>
-           <input type="submit" value="Submit">
-       </form>
+        <p id="Amount">
+        How many graphs do you want to make?
+        <select id="Select" name="graphtotal">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </p>
+        <!--HOD Link-->
+        <div id="HOD">
+          <a href="https://opendata.hawaii.gov/">Hawaii Open Data Official Website</a>
+        </div>
+        <div id="Inputs">
+          <input id="Link" type="text" name="csv_link" placeholder="Insert link here..." />
+          <input id="Button" type="image" src="https://cdn4.iconfinder.com/data/icons/interface-essential-vol-3/24/Search_Square_Alternate--magnifying-Square-glass-Search-512.png">
+        </div>
+      </form>
 
 
-     </div>
-   </div>
-   <!--Bottom line-->
-   <footer>
-     <div id="Bottom Line">
-       <h1 id="Line3"></h1>
-     </div>
-   </footer>
- </body>
+    </div>
+  </div>
+  <!--Bottom line-->
+  <footer id="footer">
+    <div id="Bottom Line">
+      <h1 id="Line3"></h1>
+    </div>
+  </footer>
+</body>
+
 </html>
