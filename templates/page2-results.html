@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Page 2</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- change to cloud link -->
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script src="/static/script.js" defer></script>
+
+     <!-- ADD THIS BACK IN -->
+   <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
+   <script src="https://storage.googleapis.com/afrstorage/static/script.js" defer></script> -->
+
+</head>
+<!--Top lines-->
+<body>
+
+   <div id="Top Lines">
+       <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
+       <h1 id="Line1"></h1>
+       <h1 id="Line2"></h1>
+   </div>
+   <!--Mainbody-->
+   <div id="Mainbody">
+       <h1 id="Label">Graph Types</h1>
+       <!--Inputs-->
+   <form method="POST" name="graph_column_select">
+
+    <!-- do not modify names or arrangement below -->
+       
+       
+       <div id="graph1">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date and Time1" >
+                       Date and Time
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year1" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="People per Capita1" >
+                       People per Capita
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+       
+       <div id="graph2">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date and Time2" >
+                       Date and Time
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year2" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="People per Capita2" >
+                       People per Capita
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+       
+       <div id="graph3">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date and Time3" >
+                       Date and Time
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year3" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="People per Capita3" >
+                       People per Capita
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+       
+       <div id="graph4">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date and Time4" >
+                       Date and Time
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year4" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="People per Capita4" >
+                       People per Capita
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+       
+       <div id="graph5">
+           <select class="graph_type" size="1" name="graph_type" onchange="graphTypeSelect()">
+               <option name="option1" value="Bar Graph">Bar Graph</option>
+               <option name="option1" value="Line Graph">Line Graph</option>
+               <option name="option1" value="Pie Graph">Pie Chart</option>
+               <option name="option1" value="Scatter Graph">Scatter Plot</option>
+           </select>
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Date and Time5" >
+                       Date and Time
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="Year5" >
+                       Year
+                     </input>
+                   </br>
+                 
+                 
+                   <br>
+                     <input type="checkbox" name="column" value="People per Capita5" >
+                       People per Capita
+                     </input>
+                   </br>
+                 
+                 
+       </div>
+       
+    <!-- do not modify names or arrangement above -->
+
+
+       <input type="submit" value="Submit">
+   </form>
+
+
+   <!--Bottom line-->
+   <footer>
+       <div id="Bottom Line">
+           <h1 id="Line3"></h1>
+       </div>
+   </div>
+   </footer>
+</body>
+
+</html>

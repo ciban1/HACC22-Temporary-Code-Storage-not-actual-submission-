@@ -53,7 +53,7 @@ async def get_second_form(request: Request, graphtotal: Union[int, None] = None,
    return templates.TemplateResponse("page2-results.html", {"request": request})
 
 @app.post('/page_2', response_class=HTMLResponse)
-def post_second_form(request: Request, column: list = Form(...), graph_type: list = Form(...), graphtotal: Union[str, None] = None, headers: Union[str, None] = None):  # array of selected columns; use position
+def post_second_form(request: Request, column: list = Form(...), graph_type: list = Form(...), graphtotal: Union[str, None] = None):  # array of selected columns; use position
    print(column)
    print(graph_type)
    headers1 = []
@@ -66,18 +66,23 @@ def post_second_form(request: Request, column: list = Form(...), graph_type: lis
       for i in column:
          for char in i:
             if char == "1":
+               i = i.replace("1", "")
                if i not in headers1:
                   headers1.append(i)
             elif char == "2":
+               i = i.replace("2", "")
                if i not in headers2:
                   headers2.append(i)
             elif char == "3":
+               i = i.replace("3", "")
                if i not in headers3:
                   headers3.append(i)
             elif char == "4":
+               i = i.replace("4", "")
                if i not in headers4:
                   headers4.append(i)
             elif char == "5":
+               i = i.replace("5", "")
                if i not in headers5:
                   headers5.append(i)
       count = count + 1
@@ -86,39 +91,61 @@ def post_second_form(request: Request, column: list = Form(...), graph_type: lis
    print(headers3)
    print(headers4)
    print(headers5)
-   # return fastapi.responses.RedirectResponse(f'/page_3', status_code=status.HTTP_302_FOUND)
-   return fastapi.responses.RedirectResponse(f'/page_3/?graphtotal={graphtotal}&graph_type={graph_type}&h1={headers1}&h2={headers2}&h3={headers3}&h4={headers4}&h={headers5}', status_code=status.HTTP_302_FOUND)
+   return fastapi.responses.RedirectResponse(f'/page_3/?graphtotal={graphtotal}&graph_type={graph_type}&h1={headers1}&h2={headers2}&h3={headers3}&h4={headers4}&h5={headers5}', status_code=status.HTTP_302_FOUND)
 
-# ### page 3
+### page 3
 @app.get('/page_3', response_class=HTMLResponse)
 async def get_third_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, h1: Union[str, None] = None, h2: Union[str, None] = None, h3: Union[str, None] = None, h4: Union[str, None] = None, h5: Union[str, None] = None):
-   print(type(h1))
    graph_type = ast.literal_eval(graph_type)
-   headers1 = ast.literal_eval(h1.replace("1", ""))
-   headers2 = ast.literal_eval(h2.replace("2", ""))
-   headers3 = ast.literal_eval(h1.replace("3", ""))
-   headers4 = ast.literal_eval(h1.replace("4", ""))
-   headers5 = ast.literal_eval(h1.replace("5", ""))
-   
-   # graphtotal = 4
-   # # headers1 = ['County1', 'Date1']
-   # headers2 = ['Urban Land Percentage2', 'Date2']
-   # headers3 = ['Urban Land Percentage3', 'Date3']
-   # headers4 = ['Urban Land Percentage4', 'Date4']
-   # # headers5 = []
-   # graph_type =['Bar Graph', 'Bar Graph', 'Bar Graph']
-
-
-   columnDisplayPage3(graphtotal, graph_type, headers1, headers2, headers3, headers4, headers5)
+   print(type(h1))
+   h1 = ast.literal_eval(h1)
+   h2 = ast.literal_eval(h2)
+   h3 = ast.literal_eval(h3)
+   h4 = ast.literal_eval(h4)
+   h5 = ast.literal_eval(h5)
+   print("THIS IS %")
+   columnDisplayPage3(graphtotal, graph_type, h1, h2, h3, h4, h5)
    return templates.TemplateResponse("page3-results.html", {"request": request})
-
-
-   # return templates.TemplateResponse("page2-results.html", {"request": request})
    
 @app.post('/page_3', response_class=HTMLResponse)
-def post_third_form(request: Request):
-   pass
+async def post_third_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, hed1x: str = Form(...), hed1y: str = Form(...), hed2x: str = Form(...), hed2y: str = Form(...), hed3x: str = Form(...), hed3y: str = Form(...), hed4x: str = Form(...), hed4y: str = Form(...), hed5x: str = Form(...), hed5y: str = Form(...)):
 
+   graph_type = ast.literal_eval(graph_type)
+   if 1 <= graphtotal:
+      graph_one = {"type": graph_type[0], "x_axis_name": hed1x.replace("-x", ""), "y_axis_name": hed1y.replace("-y", ""), "settings": dict}
+   else:
+      graph_one = {}
+   if 2 <= graphtotal:
+      graph_two = {"type": graph_type[1], "x_axis_name": hed2x.replace("-x", ""), "y_axis_name": hed2y.replace("-y", ""), "settings": dict}
+   if 3 <= graphtotal:
+      graph_three = {"type": graph_type[2], "x_axis_name": hed3x.replace("-x", ""), "y_axis_name": hed3y.replace("-y", ""), "settings": dict}
+   if 4 <= graphtotal:
+      graph_four = {"type": graph_type[3], "x_axis_name": hed4x.replace("-x", ""), "y_axis_name": hed4y.replace("-y", ""), "settings": dict}
+   if 5 <= graphtotal:
+      graph_five = {"type": graph_type[4], "x_axis_name": hed5x.replace("-x", ""), "y_axis_name": hed5y.replace("-y", ""), "settings": dict}
+   else:
+      print("NONONON")
+   print("555", graph_five)
+   return fastapi.responses.RedirectResponse(f'/page_4', status_code=status.HTTP_302_FOUND)
+
+
+
+
+
+# @app.post('/page_3')
+# async def post_third_form(request: Request, hed1x: Union[str, None] = None, hed1y: Union[str, None] = None):
+#    print("hi")
+#    print(hed1x, hed1y)
+#    # graph_type = ast.literal_eval(graph_type)
+# #    # if 1 <= graphtotal:
+# #    #    graph_one = {"type": graph_type[0], "x_axis_name": h1x, "y_axis_name": h1y, "settings": dict}
+   
+# #    # print(graph_one)
+#    return fastapi.responses.RedirectResponse(f'/page_4', status_code=status.HTTP_302_FOUND)
+
+@app.get('/page_4', response_class=HTMLResponse, )
+def get_fourth_form(request: Request):
+   return 'hi'
 
 # '''dont touch'''
 
