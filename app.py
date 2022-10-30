@@ -117,25 +117,25 @@ async def get_third_form(request: Request, graphtotal: Union[int, None] = None, 
 async def post_third_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, hed1x: Optional[str] = Form(None), hed1y: Optional[str] = Form(None), hed2x: Optional[str] = Form(None), hed2y: Optional[str] = Form(None), hed3x: Optional[str] = Form(None), hed3y: Optional[str] = Form(None), hed4x: Optional[str] = Form(None), hed4y: Optional[str] = Form(None), hed5x: Optional[str] = Form(None), hed5y: Optional[str] = Form(None), url: Union[str, None] = None):
    graph_type = ast.literal_eval(graph_type)
    if 1 <= graphtotal:
-      graph_one = dict(g_type=graph_type[0], x_axis_name=hed1x.replace("-x", ""), y_axis_name=hed1y.replace("-y", ""))
+      graph_one = {"g_type": graph_type[0], "x_axis_name": hed1x.replace("-x", ""), "y_axis_name": hed1y.replace("-y", ""), "color": '000000'}
       # settings=dict at the end
    else:
       graph_one = {}
    if 2 <= graphtotal:
-      graph_two = {"g_type": graph_type[1], "x_axis_name": hed2x.replace("-x", ""), "y_axis_name": hed2y.replace("-y", "")}
+      graph_two = {"g_type": graph_type[1], "x_axis_name": hed2x.replace("-x", ""), "y_axis_name": hed2y.replace("-y", ""), "color": "000000"}
       # "settings": dict at end
    else:
       graph_two = {}
    if 3 <= graphtotal:
-      graph_three = {"g_type": graph_type[2], "x_axis_name": hed3x.replace("-x", ""), "y_axis_name": hed3y.replace("-y", "")}
+      graph_three = {"g_type": graph_type[2], "x_axis_name": hed3x.replace("-x", ""), "y_axis_name": hed3y.replace("-y", ""), "color": "000000"}
    else:
       graph_three = {}
    if 4 <= graphtotal:
-      graph_four = {"g_type": graph_type[3], "x_axis_name": hed4x.replace("-x", ""), "y_axis_name": hed4y.replace("-y", "")}
+      graph_four = {"g_type": graph_type[3], "x_axis_name": hed4x.replace("-x", ""), "y_axis_name": hed4y.replace("-y", ""), "color": "000000"}
    else:
       graph_four = {}
    if 5 <= graphtotal:
-      graph_five = {"g_type": graph_type[4], "x_axis_name": hed5x.replace("-x", ""), "y_axis_name": hed5y.replace("-y", "")}
+      graph_five = {"g_type": graph_type[4], "x_axis_name": hed5x.replace("-x", ""), "y_axis_name": hed5y.replace("-y", ""), "color": "000000"}
    else:
       graph_five = {}
    print("555", graph_one)
@@ -146,10 +146,9 @@ async def post_third_form(request: Request, graphtotal: Union[int, None] = None,
  
 ###page 4
 @app.get('/page_4', response_class=HTMLResponse)
-async def get_first_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, graph_configurations: Union[str, None] = None, url: Union[str, None] = None):
+async def get_fourth_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, graph_configurations: Union[str, None] = None, url: Union[str, None] = None):
    print("THIS IS THE URL", url)
    graph_configurations = ast.literal_eval(graph_configurations)
-   
 
    columnDisplayPage4(graphtotal)
    columnDisplayPage5(graphtotal)
@@ -170,7 +169,37 @@ async def get_first_form(request: Request, graphtotal: Union[int, None] = None, 
    return templates.TemplateResponse("page4-results.html", {"request": request})  # returns form
    
 @app.post('/page_4', response_class=HTMLResponse)
-def post_third_form(request: Request, graph1_name: str = Form(None), graph1_color: str = Form(None), graph2_name: Optional[str] = Form(None), graph2_color: Optional[str] = Form(None), graph3_name: Optional[str] = Form(None), graph3_color: Optional[str] = Form(None), graph4_name: Optional[str] = Form(None), graph4_color: Optional[str] = Form(None), graph5_name: Optional[str] = Form(None), graph5_color: Optional[str] = Form(None), graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, graph_configurations: Union[str, None] = None, url: Union[str, None] = None):
+def post_fourth_form(request: Request, graph1_name: str = Form(None), graph1_color: str = Form(None), graph2_name: Optional[str] = Form(None), graph2_color: Optional[str] = Form(None), graph3_name: Optional[str] = Form(None), graph3_color: Optional[str] = Form(None), graph4_name: Optional[str] = Form(None), graph4_color: Optional[str] = Form(None), graph5_name: Optional[str] = Form(None), graph5_color: Optional[str] = Form(None), graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, graph_configurations: Union[str, None] = None, url: Union[str, None] = None):
+   # update color name
+   graph_configurations = ast.literal_eval(graph_configurations)
+   print("SUBMITTED 4")
+   graph_one = graph_configurations[0]
+   if "color" in graph_one:
+      graph_one["color"] = graph1_color.replace("#", "")
+   
+   graph_two = graph_configurations[1]
+   if "color" in graph_two:
+      graph_two["color"] = graph2_color.replace("#", "")
+   
+   graph_three = graph_configurations[2]
+   if "color" in graph_three:
+      graph_three["color"] = graph3_color.replace("#", "")
+
+   graph_four = graph_configurations[3]
+   if "color" in graph_four:
+      graph_four["color"] = graph4_color.replace("#", "")
+
+   graph_five = graph_configurations[4]
+   if "color" in graph_five:
+      graph_five["color"] = graph5_color.replace("#", "")
+      
+
+
+   print(graph_one)
+
+   
+   columnDisplayPage5(graphtotal)
+   
    print('graphname1', graph1_name)
    print('graphcolor1', graph1_color)
    print('graphname2', graph2_name)
@@ -181,15 +210,17 @@ def post_third_form(request: Request, graph1_name: str = Form(None), graph1_colo
    print('graphcolor4', graph4_color)
    print('graphname5', graph5_name)
    print('graphcolor5', graph5_color)
-   return fastapi.responses.RedirectResponse(f'/page_5/?graph_configurations={graph_configurations}&url={url}', status_code=status.HTTP_302_FOUND)
+   return fastapi.responses.RedirectResponse(f'/page_5/?graph_configurations={graph_configurations}&graphtotal={graphtotal}&graph_type={graph_type}&url={url}', status_code=status.HTTP_302_FOUND)
  
 ###page 5
 @app.get('/page_5', response_class=HTMLResponse)
-async def get_fifth_form(request: Request, graphtotal: Union[str, None] = None):
-    graphtotal = 2
-    columnDisplayPage5(graphtotal)
-    return templates.TemplateResponse("page5-results.html", {"request": request})  # returns form
- 
+async def get_fifth_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, graph_configurations: Union[str, None] = None, url: Union[str, None] = None):
+   graph_configurations = ast.literal_eval(graph_configurations)
+   columnDisplayPage5(graphtotal)
+   create_multiple_graphs(url, graph_configurations)
+   return templates.TemplateResponse("page5-results.html", {"request": request})  # returns form
+   
+
 # html needs to allow scroll
 @app.post('/page_5', response_class=HTMLResponse)
 async def post_first_form(request: Request, graphtotal: int = Form(...), csv_link: str = Form(...)):

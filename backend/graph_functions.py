@@ -67,6 +67,9 @@ def save_all_figures(file_type: str, figure_log):
         figure["figure"].savefig(os.path.join(img_path, sub_directory_location + str(figure["id"]) + "." + file_type))
 
 def grab_data_from_columns(values_dataframe, x_axis_name, y_axis_name):
+    x_axis_name = x_axis_name.replace(" and ", " & ")
+    y_axis_name = y_axis_name.replace(" and ", " & ")
+
     if x_axis_name == "enumerate":
         try:
             column_to_enumerate = pd.Series(values_dataframe[y_axis_name])
@@ -323,7 +326,7 @@ def create_graph(values_dataframe, axis, graph_id: int, g_type, x_axis_name, y_a
                     settings=single_settings,
                     legend_key=single_settings["legend_key"]
                 )
-            elif single_g_type == "Pie Chart":
+            elif single_g_type == "Pie Graph":
                 if "labels" not in single_settings:
                     single_settings.update({"labels": single_x_values})
                 generate_pie_chart(
@@ -378,7 +381,7 @@ def create_graph(values_dataframe, axis, graph_id: int, g_type, x_axis_name, y_a
                 settings=settings,
                 legend_key=settings["legend_key"]
             )
-        elif g_type == "Pie Chart":
+        elif g_type == "Pie Graph":
             if "labels" not in settings:
                 settings.update({"labels": x_values})
             generate_pie_chart(
@@ -447,6 +450,7 @@ def create_graph(values_dataframe, axis, graph_id: int, g_type, x_axis_name, y_a
         "y_axis_label_font_size": y_axis_label_font_size,
         "title_font_size": title_font_size
     }
+    #plt.setp(axis.get_xticklabels(), rotation=30, horizontalalignment='right')
     return graph_dictionary, graph_configuration
  
  
@@ -489,9 +493,17 @@ def create_multiple_graphs(urls, graph_configurations):
         if "g_type" not in graph_configurations[graph]:
             pass
         else:
+            if graph_configurations[graph]["g_type"] == "Pie Graph":
+                color = "#" + graph_configurations[graph]["color"]
+                print("color color", color)
+                graph_configurations[graph]["settings"] = {"color": [color, "blue"]}
+            graph_configurations[graph]["settings"] = {"color": "#" + graph_configurations[graph]["color"]}
+            print(graph_configurations[graph])
+            print(graph_configurations[graph]["color"])
             axis = available_axes.pop(0)
+           
             if "x_axis_label" not in graph_configurations[graph]:
-                if graph_configurations[graph]["g_type"] == "Pie Chart":
+                if graph_configurations[graph]["g_type"] == "Pie Graph":
                     graph_configurations[graph].update({"x_axis_label": None})
                 else:
                     graph_configurations[graph].update({"x_axis_label": graph_configurations[graph]["x_axis_name"]})
@@ -499,7 +511,7 @@ def create_multiple_graphs(urls, graph_configurations):
                 if isinstance(graph_configurations[graph]["g_type"], list):
                     graph_configurations[graph].update({"y_axis_label": None})
                 else:
-                    if graph_configurations[graph]["g_type"] == "Pie Chart":
+                    if graph_configurations[graph]["g_type"] == "Pie Graph":
                         graph_configurations[graph].update({"y_axis_label": None})
                     else:
                         graph_configurations[graph].update({"y_axis_label": graph_configurations[graph]["y_axis_name"]})

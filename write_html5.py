@@ -4,7 +4,6 @@ from fastapi import *
 from backend.graph_functions import *
  
 def columnDisplayPage5(graphtotal):
-    graph_num = graphtotal + 1
     environment = Environment(loader=FileSystemLoader("templates/"))
     results_filename = "templates/page5-results.html"
     results_template = environment.get_template("/page-5.html")
