@@ -1,4 +1,3 @@
-from turtle import right
 from urllib.request import HTTPPasswordMgrWithDefaultRealm
 import uvicorn
 import re
