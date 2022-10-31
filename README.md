@@ -1,5 +1,5 @@
 # AFR
-# Please follow the instructions below to run the app:
+# Please follow the instructions below to run the app, as the current app must be run locally:
 ## Please run "pip install -r requirements.txt"
 ## cd into the folder with app.py inside
 ## run app.py
