@@ -1,237 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Page 2</title>
+    <title>Page 2</title>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/styles.css" />
 
 </head>
+
 <body>
-   <!--Top lines-->
+    <!--Top lines-->
     <div id="Top Lines">
-      <h1 id="Line1"></h1>
-      <h1 id="Line2"></h1>
-      <img
-        id="Logo"
-        src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
-      />
+        <h1 id="Line1"></h1>
+        <h1 id="Line2"></h1>
+        <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
     </div>
-   <!--Mainbody-->
-   <div id="Mainbody">
-    <div id="Label">
-      <h1>Graph Types</h1>
-    </div>
-    <!--Instructions-->
     <div>
-      <p id="instructions">
-        For each graph, choose the type of graph you want to create. Then, select the 2 columns from the dataset you want the graph to display.
-      </p>
+        <header>
+            <nav class="navbar" style="z-index: 100">
+                <a href="https://www.google.com" class="nav-logo">
+                </a>
+                <ul class="nav-menu" style="list-style-type: none">
+                    <li class="nav-item">
+                        <a href="https://www.google.com" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
+                            class="nav-link">Tutorial</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
     </div>
-       <!--Inputs-->
-   <form id="graphColumnSelect" method="POST" name="graph_column_select">
-
-    <!-- do not modify names or arrangement below -->
-       {% set count = 1 %}
-       {% for count in range(1, graph_num) %}
-       <div id="graph{{count}}_p2">
-        <div id="bs{{count}}_p2">
-        <label for="graphType{{count}}_p2">Graph #{{count}}</label>
-           <select id="graphType{{count}}_p2" class="graph_type" size="1" name="graph_type">
-               <option name="option1" value="Bar Graph">Bar Graph</option>
-               <option name="option1" value="Line Graph">Line Graph</option>
-               <option name="option1" value="Pie Graph">Pie Chart</option>
-               <option name="option1" value="Scatter Graph">Scatter Plot</option>
-           </select>
+    <!--Mainbody-->
+    <div id="Mainbody">
+        <div id="Label">
+            <h1>Graph Types</h1>
         </div>
-        <div id="graphInfo{{count}}_p2">
-                 {% for header in columns %}
-                   <br>
-                     <input type="checkbox" name="column" value="{{header}}{{count}}" onclick="graphCheckboxValidation()">
-                       {{ header }}
-                     </input>
-                   </br>
-                 {% set count = count + 1 %}
-                 {% endfor %}
+        <!--Instructions-->
+        <div>
+            <p id="instructions">
+                For each graph, choose the type of graph you want to create. Then, select the 2 columns from the dataset
+                you want the graph to display.  For pie graphs, please select a y-axis that has numerical values.
+            </p>
         </div>
-        {% endfor %}
-    <!-- do not modify names or arrangement above -->
+        <!--Inputs-->
+        <form id="graphColumnSelect" method="POST" name="graph_column_select">
+
+            <!-- do not modify names or arrangement below -->
+            {% set count = 1 %}
+            {% for count in range(1, graph_num) %}
+            <div id="graph{{count}}_p2">
+                <div id="bs{{count}}_p2">
+                    <label for="graphType{{count}}_p2">Graph #{{count}}</label>
+                    <select id="graphType{{count}}_p2" class="graph_type" size="1" name="graph_type">
+                        <option name="option1" value="Bar Graph">Bar Graph</option>
+                        <option name="option1" value="Line Graph">Line Graph</option>
+                        <option name="option1" value="Pie Graph">Pie Chart</option>
+                        <option name="option1" value="Scatter Graph">Scatter Plot</option>
+                    </select>
+                </div>
+                <div id="graphInfo{{count}}_p2">
+                    {% for header in columns %}
+                    <br>
+                    <input type="checkbox" name="column" value="{{header}}{{count}}"
+                        onclick="graphCheckboxValidation()">
+                    {{ header }}
+                    </input>
+                    </br>
+                    {% set count = count + 1 %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <!-- do not modify names or arrangement above -->
 
 
-    <div id="buttons">
-      <input type="button" id="back" value="Back" onclick="history.back()"/>
-      <input type="submit" id="next" value="Next" />
-    </div>
-   </form>
+                <div id="buttons">
+                    <input type="button" id="back" value="Back" onclick="history.back()" />
+                    <input type="submit" id="next" value="Next" />
+                </div>
+        </form>
 
 
-   <!--Bottom line-->
-   <footer id="footer">
-       <div id="Bottom Line">
-           <h1 id="Line3"></h1>
-       </div>
-   </div>
-   </footer>
+        <!--Bottom line-->
+        <!-- <p id="bottom">Easter Egg!</p> -->
+        <div id="ending">Designed by AFR</div>
 </body>
 
 </html>
 
 <script>
-  const formInput = document.getElementById("graphColumnSelect");
-  const formInputs = formInput.getElementsByTagName("input");
-  var formGraphArray = new Array();
-  var countArray = new Array()
+    const formInput = document.getElementById("graphColumnSelect");
+    const formInputs = formInput.getElementsByTagName("input");
+    var formGraphArray = new Array();
+    var countArray = new Array()
 
 
-  if (document.body.contains(document.getElementById("graphInfo1_p2"))) {
-      const graph1 = document.getElementById("graphInfo1_p2");
-      const graph1Input = graph1.querySelectorAll("input");
-      var count1 = 0;
-      var formInputArray1 = new Array();
-      for (var i = 0; i < graph1Input.length; i++) { formInputArray1.push(graph1Input[i]) }
-      formGraphArray.push(graph1);
-      countArray.push(count1);
-  }
-  if (document.body.contains(document.getElementById("graphInfo2_p2"))) {
-      const graph2 = document.getElementById("graphInfo2_p2");
-      const graph2Input = graph2.querySelectorAll("input");
-      var count2 = 0;
-      var formInputArray2 = new Array();
-      for (var i = 0; i < graph2Input.length; i++) { formInputArray2.push(graph2Input[i]) }
-      formGraphArray.push(graph2);
-      countArray.push(count2);
-  }
-  if (document.body.contains(document.getElementById("graphInfo3_p2"))) {
-      const graph3 = document.getElementById("graphInfo3_p2");
-      const graph3Input = graph3.querySelectorAll("input");
-      var count3 = 0;
-      var formInputArray3 = new Array();
-      for (var i = 0; i < graph3Input.length; i++) { formInputArray3.push(graph3Input[i]) }
-      formGraphArray.push(graph3);
-      countArray.push(count3);
-  }
-  if (document.body.contains(document.getElementById("graphInfo4_p2"))) {
-      const graph4 = document.getElementById("graphInfo4_p2");
-      const graph4Input = graph4.querySelectorAll("input");
-      var count4 = 0;
-      var formInputArray4 = new Array();
-      for (var i = 0; i < graph4Input.length; i++) { formInputArray4.push(graph4Input[i]) }
-      formGraphArray.push(graph4);
-      countArray.push(count4);
-  }
-  if (document.body.contains(document.getElementById("graphInfo5_p2"))) {
-      const graph5 = document.getElementById("graphInfo5_p2");
-      const graph5Input = graph5.querySelectorAll("input");
-      var count5 = 0;
-      var formInputArray5 = new Array();
-      for (var i = 0; i < graph5Input.length; i++) { formInputArray5.push(graph5Input[i]) }
-      formGraphArray.push(graph5);
-      countArray.push(count5);
-  }
+    if (document.body.contains(document.getElementById("graphInfo1_p2"))) {
+        const graph1 = document.getElementById("graphInfo1_p2");
+        const graph1Input = graph1.querySelectorAll("input");
+        var count1 = 0;
+        var formInputArray1 = new Array();
+        for (var i = 0; i < graph1Input.length; i++) { formInputArray1.push(graph1Input[i]) }
+        formGraphArray.push(graph1);
+        countArray.push(count1);
+    }
+    if (document.body.contains(document.getElementById("graphInfo2_p2"))) {
+        const graph2 = document.getElementById("graphInfo2_p2");
+        const graph2Input = graph2.querySelectorAll("input");
+        var count2 = 0;
+        var formInputArray2 = new Array();
+        for (var i = 0; i < graph2Input.length; i++) { formInputArray2.push(graph2Input[i]) }
+        formGraphArray.push(graph2);
+        countArray.push(count2);
+    }
+    if (document.body.contains(document.getElementById("graphInfo3_p2"))) {
+        const graph3 = document.getElementById("graphInfo3_p2");
+        const graph3Input = graph3.querySelectorAll("input");
+        var count3 = 0;
+        var formInputArray3 = new Array();
+        for (var i = 0; i < graph3Input.length; i++) { formInputArray3.push(graph3Input[i]) }
+        formGraphArray.push(graph3);
+        countArray.push(count3);
+    }
+    if (document.body.contains(document.getElementById("graphInfo4_p2"))) {
+        const graph4 = document.getElementById("graphInfo4_p2");
+        const graph4Input = graph4.querySelectorAll("input");
+        var count4 = 0;
+        var formInputArray4 = new Array();
+        for (var i = 0; i < graph4Input.length; i++) { formInputArray4.push(graph4Input[i]) }
+        formGraphArray.push(graph4);
+        countArray.push(count4);
+    }
+    if (document.body.contains(document.getElementById("graphInfo5_p2"))) {
+        const graph5 = document.getElementById("graphInfo5_p2");
+        const graph5Input = graph5.querySelectorAll("input");
+        var count5 = 0;
+        var formInputArray5 = new Array();
+        for (var i = 0; i < graph5Input.length; i++) { formInputArray5.push(graph5Input[i]) }
+        formGraphArray.push(graph5);
+        countArray.push(count5);
+    }
 
-  function graphCheckboxValidation() {
-      for (var i = 0; i < countArray.length; i++) {
-          countArray[i] = 0;
-      }
-      for (let i in formInputArray1) {
-          if (formInputArray1[i].checked === true) {
-              countArray[0]++;
-          }
-      }
-      for (let i in formInputArray2) {
-          if (formInputArray2[i].checked === true) {
-              countArray[1]++;
-          }
-      }
-      for (let i in formInputArray3) {
-          if (formInputArray3[i].checked === true) {
-              countArray[2]++;
-          }
-      }
-      for (let i in formInputArray4) {
-          if (formInputArray4[i].checked === true) {
-              countArray[3]++;
-          }
-      }
-      for (let i in formInputArray5) {
-          if (formInputArray5[i].checked === true) {
-              countArray[4]++;
-          }
-      }
+    function graphCheckboxValidation() {
+        for (var i = 0; i < countArray.length; i++) {
+            countArray[i] = 0;
+        }
+        for (let i in formInputArray1) {
+            if (formInputArray1[i].checked === true) {
+                countArray[0]++;
+            }
+        }
+        for (let i in formInputArray2) {
+            if (formInputArray2[i].checked === true) {
+                countArray[1]++;
+            }
+        }
+        for (let i in formInputArray3) {
+            if (formInputArray3[i].checked === true) {
+                countArray[2]++;
+            }
+        }
+        for (let i in formInputArray4) {
+            if (formInputArray4[i].checked === true) {
+                countArray[3]++;
+            }
+        }
+        for (let i in formInputArray5) {
+            if (formInputArray5[i].checked === true) {
+                countArray[4]++;
+            }
+        }
 
-      if (countArray[0] === 2) {
-          for (var i = 0; i < formInputArray1.length; i++) {
-              if (formInputArray1[i].checked === false) {
-                  formInputArray1[i].disabled = true;
-              }
-          }
-      }
-      if (countArray[1] === 2) {
-          for (var i = 0; i < formInputArray2.length; i++) {
-              if (formInputArray2[i].checked === false) {
-                  formInputArray2[i].disabled = true;
-              }
-          }
-      }
-      if (countArray[2] === 2) {
-          for (var i = 0; i < formInputArray3.length; i++) {
-              if (formInputArray3[i].checked === false) {
-                  formInputArray3[i].disabled = true;
-              }
-          }
-      }
-      if (countArray[3] === 2) {
-          for (var i = 0; i < formInputArray4.length; i++) {
-              if (formInputArray4[i].checked === false) {
-                  formInputArray4[i].disabled = true;
-              }
-          }
-      }
-      if (countArray[4] === 2) {
-          for (var i = 0; i < formInputArray5.length; i++) {
-              if (formInputArray5[i].checked === false) {
-                  formInputArray5[i].disabled = true;
-              }
-          }
-      }
+        if (countArray[0] === 2) {
+            for (var i = 0; i < formInputArray1.length; i++) {
+                if (formInputArray1[i].checked === false) {
+                    formInputArray1[i].disabled = true;
+                }
+            }
+        }
+        if (countArray[1] === 2) {
+            for (var i = 0; i < formInputArray2.length; i++) {
+                if (formInputArray2[i].checked === false) {
+                    formInputArray2[i].disabled = true;
+                }
+            }
+        }
+        if (countArray[2] === 2) {
+            for (var i = 0; i < formInputArray3.length; i++) {
+                if (formInputArray3[i].checked === false) {
+                    formInputArray3[i].disabled = true;
+                }
+            }
+        }
+        if (countArray[3] === 2) {
+            for (var i = 0; i < formInputArray4.length; i++) {
+                if (formInputArray4[i].checked === false) {
+                    formInputArray4[i].disabled = true;
+                }
+            }
+        }
+        if (countArray[4] === 2) {
+            for (var i = 0; i < formInputArray5.length; i++) {
+                if (formInputArray5[i].checked === false) {
+                    formInputArray5[i].disabled = true;
+                }
+            }
+        }
 
-      if (countArray[0] === 0 || countArray[0] === 1) {
-          for (var i = 0; i < formInputArray1.length; i++) {
-              if (formInputArray1[i].checked === false) {
-                  formInputArray1[i].disabled = false;
-              }
-          }
-      }
-      if (countArray[1] === 0 || countArray[1] === 1) {
-          for (var i = 0; i < formInputArray2.length; i++) {
-              if (formInputArray2[i].checked === false) {
-                  formInputArray2[i].disabled = false;
-              }
-          }
-      }
-      if (countArray[2] === 0 || countArray[2] === 1) {
-          for (var i = 0; i < formInputArray3.length; i++) {
-              if (formInputArray3[i].checked === false) {
-                  formInputArray3[i].disabled = false;
-              }
-          }
-      }
-      if (countArray[3] === 0 || countArray[3] === 1) {
-          for (var i = 0; i < formInputArray4.length; i++) {
-              if (formInputArray4[i].checked === false) {
-                  formInputArray4[i].disabled = false;
-              }
-          }
-      }
-      if (countArray[4] === 0 || countArray[4] === 1) {
-          for (var i = 0; i < formInputArray5.length; i++) {
-              if (formInputArray5[i].checked === false) {
-                  formInputArray5[i].disabled = false;
-              }
-          }
-      }
+        if (countArray[0] === 0 || countArray[0] === 1) {
+            for (var i = 0; i < formInputArray1.length; i++) {
+                if (formInputArray1[i].checked === false) {
+                    formInputArray1[i].disabled = false;
+                }
+            }
+        }
+        if (countArray[1] === 0 || countArray[1] === 1) {
+            for (var i = 0; i < formInputArray2.length; i++) {
+                if (formInputArray2[i].checked === false) {
+                    formInputArray2[i].disabled = false;
+                }
+            }
+        }
+        if (countArray[2] === 0 || countArray[2] === 1) {
+            for (var i = 0; i < formInputArray3.length; i++) {
+                if (formInputArray3[i].checked === false) {
+                    formInputArray3[i].disabled = false;
+                }
+            }
+        }
+        if (countArray[3] === 0 || countArray[3] === 1) {
+            for (var i = 0; i < formInputArray4.length; i++) {
+                if (formInputArray4[i].checked === false) {
+                    formInputArray4[i].disabled = false;
+                }
+            }
+        }
+        if (countArray[4] === 0 || countArray[4] === 1) {
+            for (var i = 0; i < formInputArray5.length; i++) {
+                if (formInputArray5[i].checked === false) {
+                    formInputArray5[i].disabled = false;
+                }
+            }
+        }
 
-  }
+    }
 </script>

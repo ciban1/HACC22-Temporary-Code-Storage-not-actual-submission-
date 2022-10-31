@@ -1,61 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Page 3</title>
+    <title>Page 3</title>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- remove after -->
-  <link rel="stylesheet" href="/static/styles.css" />
-  <script src="/static/script.js" defer></script>
+    <!-- remove after -->
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/script.js" defer></script>
 
-   <!-- ADD THIS BACK IN -->
-   <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
+    <!-- ADD THIS BACK IN -->
+    <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
    <script src="https://storage.googleapis.com/afrstorage/static/script.js" defer></script> -->
 
 </head>
-<!--Top lines-->
+
 <body>
-
+    <!--Top lines-->
+    <div id="Top Lines">
+        <h1 id="Line1"></h1>
+        <h1 id="Line2"></h1>
+        <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
+    </div>
+    <div>
+        <header>
+            <nav class="navbar" style="z-index: 100">
+                <a href="https://www.google.com" class="nav-logo">
+                </a>
+                <ul class="nav-menu" style="list-style-type: none">
+                    <li class="nav-item">
+                        <a href="https://www.google.com" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
+                            class="nav-link">Tutorial</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
     <div id="Mainbody">
-        <h1 id="Label">Customize Graph</h1>
-        <!--Inputs-->
+        <!--Label-->
+        <div id="Label">
+            <h1>Column Select</h1>
+        </div>
+        <!--Instructions-->
+        <div>
+            <p id="instructions">Select the type of graph you would like to create, then which field in
+                the dataset you want to include in each graph. You must fill out all of the fields below.</p>
+        </div>
 
-<!-- can change ONLY ids of below, class; If you are rearranging into tables, let me know -->
-    <form method="POST" name="axis_select">
-        
-            <div id="graph1">
+        <!-- can change ONLY ids of below, class; If you are rearranging into tables, let me know -->
+        <form method="POST" name="axis_select">
+             <div id="graph1_p3">
                 <!-- can change to -->
-                <p id="graph1">Graph 1</p> 
-                <p>Line Graph</p>
-                <br>
+                <p id="g1_p3">Graph 1</p>
+                <div id="t1">
+                    <p id="gt1">Bar Graph</p>
                     <p>Date and Time</p>
                     <input type="radio" name="hed1x" value="Date and Time-x">X-Axis</input>
                     <input type="radio" name="hed1y" value="Date and Time-y">Y-Axis</input>
-                </br>
-                <br>
-                    <p>Year</p>
-                    <input type="radio" name="hed1x" value="Year-x">X-Axis</input>
-                    <input type="radio" name="hed1y" value="Year-y">Y-Axis</input>
-                </br>
-            </div>
-        
+                    </br>
+                    <br>
+                    <p>People per Capita</p>
+                    <input type="radio" name="hed1x" value="People per Capita-x">X-Axis</input>
+                    <input type="radio" name="hed1y" value="People per Capita-y">Y-Axis</input>
+                    </br>
+                </div>
+    </div>
+    
+
+    
 
         
-        
-        
 
-        
+            
 
-        
-<!-- can change ONLY ids of above, class; If you are rearranging into tables, let me know -->
+                
+                    <!-- can change ONLY ids of above, class; If you are rearranging into tables, let me know -->
 
 
 
-        <input type="submit" value="Submit">
-    </form>
-
+                    <div id="buttons">
+                        <input type="button" id="back" value="Back" onclick="history.back()" />
+                        <input type="submit" id="next" value="Next" />
+                    </div>
+                    </form>
+        <!--Bottom line-->
+        <!-- <p id="bottom">Easter Egg!</p> -->
+        <div id="ending">Designed by AFR</div>
 </body>
 
 </html>

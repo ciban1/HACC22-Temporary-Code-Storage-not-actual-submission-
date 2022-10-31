@@ -1,125 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Page 3</title>
+    <title>Page 3</title>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- remove after -->
-  <link rel="stylesheet" href="/static/styles.css" />
-  <script src="/static/script.js" defer></script>
+    <!-- remove after -->
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/script.js" defer></script>
 
-   <!-- ADD THIS BACK IN -->
-   <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
+    <!-- ADD THIS BACK IN -->
+    <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
    <script src="https://storage.googleapis.com/afrstorage/static/script.js" defer></script> -->
 
 </head>
-<!--Top lines-->
+
 <body>
-
+    <!--Top lines-->
+    <div id="Top Lines">
+        <h1 id="Line1"></h1>
+        <h1 id="Line2"></h1>
+        <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
+    </div>
+    <div>
+        <header>
+            <nav class="navbar" style="z-index: 100">
+                <a href="https://www.google.com" class="nav-logo">
+                </a>
+                <ul class="nav-menu" style="list-style-type: none">
+                    <li class="nav-item">
+                        <a href="https://www.google.com" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
+                            class="nav-link">Tutorial</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
     <div id="Mainbody">
-        <h1 id="Label">Customize Graph</h1>
-        <!--Inputs-->
+        <!--Label-->
+        <div id="Label">
+            <h1>Column Select</h1>
+        </div>
+        <!--Instructions-->
+        <div>
+            <p id="instructions">Select the type of graph you would like to create, then which field in
+                the dataset you want to include in each graph. You must fill out all of the fields below.</p>
+        </div>
 
-<!-- can change ONLY ids of below, class; If you are rearranging into tables, let me know -->
-    <form method="POST" name="axis_select">
-        {% if 1 <= graphtotal %}
-            <div id="graph1">
+        <!-- can change ONLY ids of below, class; If you are rearranging into tables, let me know -->
+        <form method="POST" name="axis_select">
+            {% if 1 <= graphtotal %} <div id="graph1_p3">
                 <!-- can change to -->
-                <p id="graph1">Graph 1</p> 
-                <p>{{graph_type[0]}}</p>
-                <br>
+                <p id="g1_p3">Graph 1</p>
+                <div id="t1">
+                    <p id="gt1">{{graph_type[0]}}</p>
                     <p>{{ headers1[0] }}</p>
                     <input type="radio" name="hed1x" value="{{headers1[0]}}-x">X-Axis</input>
                     <input type="radio" name="hed1y" value="{{headers1[0]}}-y">Y-Axis</input>
-                </br>
-                <br>
+                    </br>
+                    <br>
                     <p>{{ headers1[1] }}</p>
                     <input type="radio" name="hed1x" value="{{headers1[1]}}-x">X-Axis</input>
                     <input type="radio" name="hed1y" value="{{headers1[1]}}-y">Y-Axis</input>
-                </br>
-            </div>
-        {% endif %}
+                    </br>
+                </div>
+    </div>
+    {% endif %}
 
-        {% if 2 <= graphtotal %}
-            <div>
-                <!-- can change to -->
-                <p id="graph2">Graph 2</p>
-                <p>{{graph_type[1]}}</p>
-                <br>
-                    <p>{{ headers2[0] }}</p>
-                    <input type="radio" name="hed2x" value="{{headers2[0]}}-x">X-Axis</input>
-                    <input type="radio" name="hed2y" value="{{headers2[0]}}-y">Y-Axis</input>
-                </br>
-                <br>
-                    <p>{{ headers2[1] }}</p>
-                    <input type="radio" name="hed2x" value="{{headers2[1]}}-x">X-Axis</input>
-                    <input type="radio" name="hed2y" value="{{headers2[1]}}-y">Y-Axis</input>
-                </br>
-            </div>
-        {% endif %}
-        
-        {% if 3 <= graphtotal %}
-            <div id="graph{{count}}">
-                <!-- can change to -->
-                <p id="graph3">Graph 3</p>
-                <p>{{graph_type[2]}}</p> 
-                <br>
-                    <p>{{ headers3[0] }}</p>
-                    <input type="radio" name="hed3x" value="{{headers3[0]}}-x">X-Axis</input>
-                    <input type="radio" name="hed3y" value="{{headers3[0]}}-y">Y-Axis</input>
-                </br>
-                <br>
-                    <p>{{ headers3[1] }}</p>
-                    <input type="radio" name="hed3x" value="{{headers3[1]}}-x">X-Axis</input>
-                    <input type="radio" name="hed3y" value="{{headers3[1]}}-y">Y-Axis</input>
+    {% if 2 <= graphtotal %} <div id="graph2_p3">
+        <!-- can change to -->
+        <p id="g2_p3">Graph 2</p>
+        <div id="t2">
+            <p id="gt2">{{graph_type[1]}}</p>
+            <p>{{ headers2[0] }}</p>
+            <input type="radio" name="hed2x" value="{{headers2[0]}}-x">X-Axis</input>
+            <input type="radio" name="hed2y" value="{{headers2[0]}}-y">Y-Axis</input>
             </br>
-            </div>
+            <br>
+            <p>{{ headers2[1] }}</p>
+            <input type="radio" name="hed2x" value="{{headers2[1]}}-x">X-Axis</input>
+            <input type="radio" name="hed2y" value="{{headers2[1]}}-y">Y-Axis</input>
+            </br>
+        </div>
+        </div>
         {% endif %}
 
-        {% if 4 <= graphtotal %}
-            <div id="graph{{count}}">
-                <!-- can change to -->
-                <p id="graph4">Graph 4</p>
-                <p>{{graph_type[3]}}</p>
+        {% if 3 <= graphtotal %} <div id="graph3_p3">
+            <!-- can change to -->
+            <p id="g3_p3">Graph 3</p>
+            <div id="t3">
+                <p id="gt3">{{graph_type[2]}}</p>
+                <p>{{ headers3[0] }}</p>
+                <input type="radio" name="hed3x" value="{{headers3[0]}}-x">X-Axis</input>
+                <input type="radio" name="hed3y" value="{{headers3[0]}}-y">Y-Axis</input>
+                </br>
                 <br>
+                <p>{{ headers3[1] }}</p>
+                <input type="radio" name="hed3x" value="{{headers3[1]}}-x">X-Axis</input>
+                <input type="radio" name="hed3y" value="{{headers3[1]}}-y">Y-Axis</input>
+                </br>
+            </div>
+            </div>
+            {% endif %}
+
+            {% if 4 <= graphtotal %} <div id="graph4_p3">
+                <!-- can change to -->
+                <p id="g4_p3">Graph 4</p>
+                <div id="t4">
+                    <p id="gt4">{{graph_type[3]}}</p>
                     <p>{{ headers4[0] }}</p>
                     <input type="radio" name="hed4x" value="{{headers4[0]}}-x">X-Axis</input>
                     <input type="radio" name="hed4y" value="{{headers4[0]}}-y">Y-Axis</input>
-                </br>
-                <br>
+                    </br>
+                    <br>
                     <p>{{ headers4[1] }}</p>
                     <input type="radio" name="hed4x" value="{{headers4[1]}}-x">X-Axis</input>
                     <input type="radio" name="hed4y" value="{{headers4[1]}}-y">Y-Axis</input>
-                </br>
-            </div>
-        {% endif %}
+                    </br>
+                </div>
+                </div>
+                {% endif %}
 
-        {% if 5 <= graphtotal %}
-            <div id="graph5">
-                <!-- can change to -->
-                <p id="graph{{graph}}">Graph 5</p>
-                <p>{{graph_type[4]}}</p>
-                <br>
-                    <p>{{ headers5[0] }}</p>
-                    <input type="radio" name="hed5x" value="{{headers5[0]}}-x">X-Axis</input>
-                    <input type="radio" name="hed5y" value="{{headers5[0]}}-y">Y-Axis</input>
-                </br>
-                <br>
-                    <p>{{ headers5[1] }}</p>
-                    <input type="radio" name="hed5x" value="{{headers5[1]}}-x">X-Axis</input>
-                    <input type="radio" name="hed5y" value="{{headers5[1]}}-y">Y-Axis</input>
-                </br>
-            </div>
-        {% endif %}
-<!-- can change ONLY ids of above, class; If you are rearranging into tables, let me know -->
+                {% if 5 <= graphtotal %} <div id="graph5_p3">
+                    <!-- can change to -->
+                    <p id="g5_p3">Graph 5</p>
+                    <div id="t5">
+                        <p id="gt5">{{graph_type[4]}}</p>
+                        <p>{{ headers5[0] }}</p>
+                        <input type="radio" name="hed5x" value="{{headers5[0]}}-x">X-Axis</input>
+                        <input type="radio" name="hed5y" value="{{headers5[0]}}-y">Y-Axis</input>
+                        </br>
+                        <br>
+                        <p>{{ headers5[1] }}</p>
+                        <input type="radio" name="hed5x" value="{{headers5[1]}}-x">X-Axis</input>
+                        <input type="radio" name="hed5y" value="{{headers5[1]}}-y">Y-Axis</input>
+                        </br>
+                    </div>
+                    </div>
+                    {% endif %}
+                    <!-- can change ONLY ids of above, class; If you are rearranging into tables, let me know -->
 
 
 
-        <input type="submit" value="Submit">
-    </form>
-
+                    <div id="buttons">
+                        <input type="button" id="back" value="Back" onclick="history.back()" />
+                        <input type="submit" id="next" value="Next" />
+                    </div>
+                    </form>
+        <!--Bottom line-->
+        <!-- <p id="bottom">Easter Egg!</p> -->
+        <div id="ending">Designed by AFR</div>
 </body>
 
 </html>

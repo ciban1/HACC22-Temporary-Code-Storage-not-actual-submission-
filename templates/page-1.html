@@ -10,6 +10,7 @@
 
   <!--Temp-->
   <link rel="stylesheet" href="static/styles.css" />
+  <script src="static/script.js" defer></script>
 
   <!--Add back in-->
   <!-- <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
@@ -18,49 +19,100 @@
 
 <body>
   <!--Top lines-->
-  <div id="Top Lines">
-    <h1 id="Line1"></h1>
-    <h1 id="Line2"></h1>
-    <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
-  </div>
-  <div id="maintext">
-    <!--Title-->
-    <div id="HODV">
-      <h1>Hawaii Open Data Visualizer</h1>
+  <div id="everything">
+    <div id="Top Lines">
+      <h1 id="Line1"></h1>
+      <h1 id="Line2"></h1>
+      <img id="Logo" src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png" />
     </div>
-    <!--input and button-->
-    <div id="Inputs">
+    <div>
+      <header>
+        <nav class="navbar" style="z-index: 100">
+          <a href="https://www.google.com" class="nav-logo">
+          </a>
+          <ul class="nav-menu" style="list-style-type: none">
+            <li class="nav-item">
+              <a href="https://www.google.com" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank" class="nav-link">Tutorial</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div id="maintext">
+      <!--Title-->
+      <div id="HODV">
+        <h1>Hawaii Open Data Visualizer</h1>
+      </div>
+      <!--input and button-->
+      <div id="Inputs">
 
-      <form method="POST" enctype="multipart/form-data">
-        <p id="Amount">
-        How many graphs do you want to make?
-        <select id="Select" name="graphtotal">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </p>
-        <!--HOD Link-->
-        <div id="HOD">
-          <a href="https://opendata.hawaii.gov/">Hawaii Open Data Official Website</a>
+        <form method="POST" enctype="multipart/form-data">
+          <p id="Amount">
+            How many graphs do you want to make?
+            <select id="Select" name="graphtotal">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </p>
+          <!--HOD Link-->
+          <div id="HOD">
+            <a href="https://opendata.hawaii.gov/" target="_blank">Hawaii Open Data Official Website</a>
+          </div>
+          <div id="Inputs">
+            <input id="Link" type="text" name="csv_link" placeholder="Insert link here..." />
+            <input id="Button" type="image"
+              src="https://cdn4.iconfinder.com/data/icons/interface-essential-vol-3/24/Search_Square_Alternate--magnifying-Square-glass-Search-512.png">
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+    <!--Extra-->
+    <div id="show">
+      <h2>Graph Examples:</h2>
+    </div>
+    <div id="examples">
+      <div id="LG">
+        <img id="LGpic"
+          src="https://cdn.glitch.global/94b3c5a7-7f98-48f2-982f-b04c161f4ce9/e97a7015-eaa3-4e61-a8c8-638f8279d170.line-chart.png?v=1667110122658">
+        <p id="LGname">Line Graph</p>
+      </div>
+      <div id="BG">
+        <img id="BGpic"
+          src="https://cdn.glitch.global/94b3c5a7-7f98-48f2-982f-b04c161f4ce9/6248ed67-940b-407a-b47a-e3f21f17c7ab.bar-graph.png?v=1667110802149">
+        <p id="BGname">Bar Graph</p>
+      </div>
+      <div id="SP">
+        <img id="SPpic"
+          src="https://cdn.glitch.global/94b3c5a7-7f98-48f2-982f-b04c161f4ce9/37ddf6b6-e418-40e7-8974-0af9684548f6.scatter-plot.png?v=1667110816689">
+        <p id="SPname">Scatter Plot</p>
+      </div>
+      <div id="PC">
+        <div id="PCBS">
+          <img id="PCpic"
+            src="https://cdn.glitch.global/94b3c5a7-7f98-48f2-982f-b04c161f4ce9/6b4f34ad-4e21-4fba-bfb2-aaee37906b39.Pie-Chart.jpeg?v=1667109610615">
+          <p id="PCname">Pie Chart</p>
         </div>
-        <div id="Inputs">
-          <input id="Link" type="text" name="csv_link" placeholder="Insert link here..." />
-          <input id="Button" type="image" src="https://cdn4.iconfinder.com/data/icons/interface-essential-vol-3/24/Search_Square_Alternate--magnifying-Square-glass-Search-512.png">
+      </div>
+      <div id="GG">
+        <div id="GGBS">
+          <img id="GGpic"
+            src="https://cdn.glitch.global/94b3c5a7-7f98-48f2-982f-b04c161f4ce9/5aeff39f-5c4c-4d44-b419-69371d03afc7.geo-graph.png?v=1667110807126">
+          <p id="GGname">Geo Graph</p>
         </div>
-      </form>
-
-
+      </div>
     </div>
   </div>
   <!--Bottom line-->
-  <footer id="footer">
-    <div id="Bottom Line">
-      <h1 id="Line3"></h1>
-    </div>
-  </footer>
+  <!-- <p id="bottom">Easter Egg!</p> -->
+  <div id="ending">Designed by AFR</div>
 </body>
 
 </html>

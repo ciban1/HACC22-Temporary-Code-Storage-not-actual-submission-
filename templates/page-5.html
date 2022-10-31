@@ -7,38 +7,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
  
   </head>
-  <!--Top lines-->
+   <!--Top lines-->
+   <div id="Top Lines">
+    <h1 id="Line1"></h1>
+    <h1 id="Line2"></h1>
+    <img
+      id="Logo"
+      src="https://opendata.hawaii.gov/uploads/admin/2019-04-09-225150.352840Hawaii-State-Seal.png"
+    />
+  </div>
+  <!--Label-->
+  <div id="Label">
+    <h1>Published Graphs</h1>
+  </div>
   <body>
       {% if 1 <= graphtotal %}
-      <img src= "/static/1.png">
+      <img class="graphs" src= "/static/1.png">
       <a href="/static/1.png" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
       {% if 2 <= graphtotal %}
-      <img src= "/static/2.png">
+      <img class="graphs" src= "/static/2.png">
       <a href="/static/2.png" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
       {% if 3 <= graphtotal %}
-      <img src= "/static/3.png">
+      <img class="graphs" src= "/static/3.png">
       <a href="/static/3.png" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
       {% if 4 <= graphtotal %}
-      <img src= "/static/4.png">
+      <img class="graphs" src= "/static/4.png">
       <a href="/static/4.png" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
       {% if 5 <= graphtotal %}
-      <img src= "/static/5.png">
+      <img class="graphs" src= "/static/5.png">
       <a href="/static/5.png" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
-    </div>
+    <!--Bottom line-->
+    <!-- <p id="bottom">Easter Egg!</p> -->
+    <div id="ending">Designed by AFR</div>
   </body>
 </html>
