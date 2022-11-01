@@ -149,8 +149,8 @@ async def get_fourth_form(request: Request, graphtotal: Union[int, None] = None,
    print("THIS IS THE URL", url)
    graph_configurations = ast.literal_eval(graph_configurations)
 
-   columnDisplayPage4(graphtotal)
-   columnDisplayPage5(graphtotal)
+   # columnDisplayPage4(graphtotal)
+   # columnDisplayPage5(graphtotal)
    
    print(graph_configurations, type(graph_configurations))
    graph_one = graph_configurations[0]
@@ -165,6 +165,8 @@ async def get_fourth_form(request: Request, graphtotal: Union[int, None] = None,
    print(type(graph_five))
    
    create_multiple_graphs(url, graph_configurations)
+   columnDisplayPage4(graphtotal)
+
    return templates.TemplateResponse("page4-results.html", {"request": request})  # returns form
    
 @app.post('/page_4', response_class=HTMLResponse)
@@ -197,7 +199,7 @@ def post_fourth_form(request: Request, graph1_name: str = Form(None), graph1_col
    print(graph_one)
 
    
-   columnDisplayPage5(graphtotal)
+   
    
    print('graphname1', graph1_name)
    print('graphcolor1', graph1_color)
@@ -215,8 +217,9 @@ def post_fourth_form(request: Request, graph1_name: str = Form(None), graph1_col
 @app.get('/page_5', response_class=HTMLResponse)
 async def get_fifth_form(request: Request, graphtotal: Union[int, None] = None, graph_type: Union[str, None] = None, graph_configurations: Union[str, None] = None, url: Union[str, None] = None):
    graph_configurations = ast.literal_eval(graph_configurations)
-   columnDisplayPage5(graphtotal)
    create_multiple_graphs(url, graph_configurations)
+   columnDisplayPage5(graphtotal)
+
    return templates.TemplateResponse("page5-results.html", {"request": request})  # returns form
    
 
@@ -226,4 +229,5 @@ async def post_first_form(request: Request, graphtotal: int = Form(...), csv_lin
     return fastapi.responses.RedirectResponse("page-5-results-html", {"request": request})
  
 if __name__ == '__main__':
+   # uvicorn.run(app, port=8080, host="0.0.0.0")
    uvicorn.run(app)

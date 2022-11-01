@@ -7,13 +7,13 @@ import datetime
 import geopandas as gpd
 import os
  
-# save all created figures as "[graph type][graph id][time stamp].[file_type]"
-def save_all_figures(file_type: str, figure_log):
-   for figure in figurelog:
-       time = datetime.datetime.now().strftime("%y%m%d%H%M%S")
-       sub_directory_location = "graph_imgs/"
-       figure["figure"].savefig(sub_directorylocation + figure["type"] + str(figure["id"]) + "" + time + "." + file_type)
-       # "C:/Users/CClub/PycharmProjects/Pandas_Test"
+# # save all created figures as "[graph type][graph id][time stamp].[file_type]"
+# def save_all_figures(file_type: str, figure_log):
+#    for figure in figurelog:
+#        time = datetime.datetime.now().strftime("%y%m%d%H%M%S")
+#        sub_directory_location = "/graph_imgs/"
+#        figure["figure"].savefig(sub_directorylocation + figure["type"] + str(figure["id"]) + "" + time + "." + file_type)
+#        # "C:/Users/CClub/PycharmProjects/Pandas_Test"
  
 # --------------------------------------------------- Files Functions --------------------------------------------------
 def sql_query_link_converter(csv_url):
@@ -57,14 +57,12 @@ def grab_data_from_urls(url):
  
 # save all created figures as "[graph type][graph id][time stamp].[file_type]"
 def save_all_figures(file_type: str, figure_log):
-    img_path = os.path.abspath(__file__)  # Figures out the absolute path for you in case your working directory moves around.
-    sub_directory_location = "../../static/"
-    file_path_list = []
+    img_path = os.path.relpath(__file__)  # Figures out the absolute path for you in case your working directory moves around.
+    sub_directory_location = "../../"
     for figure in figure_log:
-        time = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-        file_path = os.path.join(img_path, sub_directory_location + str(figure["id"]) + "." + file_type)
-        file_path_list.append(file_path)
         figure["figure"].savefig(os.path.join(img_path, sub_directory_location + str(figure["id"]) + "." + file_type))
+    
+
 
 def grab_data_from_columns(values_dataframe, x_axis_name, y_axis_name):
     x_axis_name = x_axis_name.replace(" and ", " & ")
@@ -573,7 +571,7 @@ def create_multiple_graphs(urls, graph_configurations):
             all_returned_graph_configurations.append(returned_graph_configuration)
             graph += 1
  
-    save_all_figures("png", logged_figures)
+    save_all_figures("svg", logged_figures)
  
     return all_returned_graph_configurations
  

@@ -5,7 +5,9 @@
  
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
- 
+    <link rel="stylesheet" href="https://storage.googleapis.com/afrstorage/static/styles.css" />
+    <script src="https://storage.googleapis.com/afrstorage/static/script.js" defer></script>
+    
   </head>
    <!--Top lines-->
    <div id="Top Lines">
@@ -22,32 +24,40 @@
   </div>
   <body>
       {% if 1 <= graphtotal %}
-      <img class="graphs" src= "/static/1.png">
-      <a href="/static/1.png" download="graph">
+      <!-- <embed src="1.svg" />
+      <embed src="1.svg" /> -->
+      <img src="data:image/svg+xml;base64,{{g1_base64}}" />
+
+      <a href="data:image/svg+xml;base64,{{g1_base64}}" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
+
       {% if 2 <= graphtotal %}
-      <img class="graphs" src= "/static/2.png">
-      <a href="/static/2.png" download="graph">
+      <img src="data:image/svg+xml;base64,{{g2_base64}}" />
+
+      <a href="data:image/svg+xml;base64,{{g2_base64}}" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
+
       {% if 3 <= graphtotal %}
-      <img class="graphs" src= "/static/3.png">
-      <a href="/static/3.png" download="graph">
+      <img src="data:image/svg+xml;base64,{{g3_base64}}" />
+      <a href="data:image/svg+xml;base64,{{g3_base64}}" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
+
       {% if 4 <= graphtotal %}
-      <img class="graphs" src= "/static/4.png">
-      <a href="/static/4.png" download="graph">
+      <img src="data:image/svg+xml;base64,{{g4_base64}}" />
+      <a href="data:image/svg+xml;base64,{{g4_base64}}" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
+
       {% if 5 <= graphtotal %}
-      <img class="graphs" src= "/static/5.png">
-      <a href="/static/5.png" download="graph">
+      <img src="data:image/svg+xml;base64,{{g5_base64}}" />
+      <a href="data:image/svg+xml;base64,{{g5_base64}}" download="graph">
         <input id="download" type="button" value="Download" />
         </a>
       {% endif %}
