@@ -194,13 +194,8 @@ def post_fourth_form(request: Request, graph1_name: str = Form(None), graph1_col
    if "color" in graph_five:
       graph_five["color"] = graph5_color.replace("#", "")
       
-
-
    print(graph_one)
 
-   
-   
-   
    print('graphname1', graph1_name)
    print('graphcolor1', graph1_color)
    print('graphname2', graph2_name)

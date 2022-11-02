@@ -60,7 +60,7 @@ def save_all_figures(file_type: str, figure_log):
     img_path = os.path.relpath(__file__)  # Figures out the absolute path for you in case your working directory moves around.
     sub_directory_location = "../../"
     for figure in figure_log:
-        figure["figure"].savefig(os.path.join(img_path, sub_directory_location + str(figure["id"]) + "." + file_type))
+        figure["figure"].savefig(str(figure["id"]) + "." + file_type)
     
 
 
